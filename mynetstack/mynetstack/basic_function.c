@@ -9,3 +9,8 @@ void basic_free(void* block)
 {
 	free(block);
 }
+
+void basic_memcpy(u8* dst,u8* src,u32 size)
+{
+	memcpy(dst,src,size);
+}

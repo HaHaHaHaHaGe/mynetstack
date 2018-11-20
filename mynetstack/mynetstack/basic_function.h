@@ -13,10 +13,14 @@
 //void* basic_malloc(u32 size)
 //void basic_free(void* block)
 //函数，用于内存的分配与释放
+//
+//2018-11-21:
+//增加函数void basic_memcpy(u8* dst,u8* src,u32 size)
 //////////////////////////////////////////////////////////////////
 #ifndef __BASIC_FUNCTION_H__
 #define __BASIC_FUNCTION_H__
 #include <malloc.h>
+#include <string.h>
 #include "basic_type.h"
 
 /*
@@ -33,5 +37,18 @@ void* basic_malloc(u32 size);
 block:释放空间的指针
 */
 void basic_free(void* block);
+
+
+
+
+/*
+内存拷贝
+入口参数：
+dst：被拷贝的位置
+src：需要拷贝的位置
+size：需要拷贝的大小（字节）
+*/
+void basic_memcpy(u8* dst, u8* src, u32 size);
+
 
 #endif // !__BASIC_FUNCTION_H__

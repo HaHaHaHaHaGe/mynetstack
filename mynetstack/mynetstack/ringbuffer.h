@@ -14,6 +14,15 @@
 //u8 deinitial_buffer(void);
 //u8 initial_buffer(u8* ptr, u32 size);
 //用于写缓冲区、释放缓冲区、初始化缓冲区
+//
+//2018-11-20
+//将void write_buffer(u8* data, u32 datalen);
+//更改为void write_buffer_data(u8* data, u32 datalen)
+//并修复在写入的数据刚好等于整个缓存大小、并且读指针为起始值时
+//无法正确判断并设置当前状态为“超前态”
+//增加读取函数
+//u8* get_unread_data(u32 *len);
+//用于一口气读出所有的未读数据
 //////////////////////////////////////////////////////////////////
 #ifndef  __RINGBUFFER_H__
 #define __RINGBUFFER_H__
@@ -25,7 +34,7 @@
 data:写入的数据指针
 datalen:写入的数据长度
 */
-void write_buffer(u8* data, u32 datalen);
+void write_buffer_data(u8* data, u32 datalen);
 
 
 /*
@@ -49,4 +58,18 @@ size: 需要开辟空间的大小
 u8 initial_buffer(u8* ptr, u32 size);
 
 
+/*
+外部写入数据后使用此函数更新内部参数
+入口参数：
+datalen:外部写入的数据长度
+*/
+void write_buffer_len(u32 datalen);
+
+
+/*
+获取全部未读数据
+入口参数：
+len: 读出数据的长度（字节）
+*/
+u8* get_unread_data(u32 *len);
 #endif //  __RINGBUFFER_H_
