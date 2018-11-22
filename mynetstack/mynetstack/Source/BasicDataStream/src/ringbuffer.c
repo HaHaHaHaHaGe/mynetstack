@@ -1,8 +1,5 @@
-#include "ringbuffer.h"
+#include "../inc/ringbuffer.h"
 
-#define WR_SEL (read_location_ptr < write_location_ptr)
-#define SUR_SIZE ((WR_SEL)?(write_location_ptr - read_location_ptr)\
-						:(end_ringbuffer_ptr - read_location_ptr + write_location_ptr - start_ringbuffer_ptr))
 
 u8* start_ringbuffer_ptr;															//缓冲区起始位置
 u8* end_ringbuffer_ptr;																//缓冲区截止位置
@@ -30,6 +27,7 @@ u8 initial_buffer(u8* ptr,u32 size)
 			return FAIL;
 		malloc_flag = YES;															//记录是自行分配的空间
 	}
+	return_data_buffer = basic_malloc(size);										//分配用于返回读取的空间
 	end_ringbuffer_ptr = start_ringbuffer_ptr + size;
 	write_location_ptr = start_ringbuffer_ptr;										//初始化相关指针
 	read_location_ptr = start_ringbuffer_ptr;
@@ -45,8 +43,12 @@ u8 deinitial_buffer(void)
 	if (malloc_flag == YES)															//判断是否是自行分配的空间
 		basic_free(start_ringbuffer_ptr);											//释放空间
 	ringbuffer_size = 0;
+	basic_free(return_data_buffer);
 	start_ringbuffer_ptr = NULL_PTR;												//防止野指针
 	end_ringbuffer_ptr = NULL_PTR;
+	write_location_ptr = NULL_PTR;
+	read_location_ptr = NULL_PTR;
+	return_data_buffer = NULL_PTR;
 	return SUCCESS;
 }
 
@@ -55,7 +57,7 @@ u8 deinitial_buffer(void)
 
 void write_buffer_len(u32 datalen)
 {
-	u32 write_len;																	//写数据大小															//读数据指针
+	u32 write_len;																	//写数据大小											
 
 	if (write_location_ptr + datalen < end_ringbuffer_ptr)							//当写入数据量在 write 与 end 之间时
 	{
@@ -150,20 +152,58 @@ void write_buffer_data(u8* data, u32 datalen)
 
 
 
-u8* get_unread_data(u32 *len)
+u8* get_unread_data(u32 *len, u8 preview)										//获取所有未读数据
 {
-	if (return_data_buffer != NULL_PTR)
-		basic_free(return_data_buffer);
-	return_data_buffer = basic_malloc(SUR_SIZE);
-	*len = SUR_SIZE;
-	if(WR_SEL)
+	if (read_location_ptr < write_location_ptr)									//判断read是否超前write
+	{
 		basic_memcpy(return_data_buffer, read_location_ptr, write_location_ptr - read_location_ptr);
-	else
+
+	}
+	else if (read_location_ptr == write_location_ptr && leading_flag == NO)		//没有未读数据
+	{
+		*len = 0;
+		return NULL_PTR;
+	}
+	else																		//分段存在的数据（read  > write）
 	{
 		basic_memcpy(return_data_buffer, read_location_ptr, end_ringbuffer_ptr - read_location_ptr);
 		basic_memcpy(return_data_buffer + (end_ringbuffer_ptr - read_location_ptr), start_ringbuffer_ptr, write_location_ptr - start_ringbuffer_ptr);
 	}
-	read_location_ptr = write_location_ptr;
+	if (preview == NO)															//是否是预览模式，预览模式下不修改读指针
+	{
+		read_location_ptr = write_location_ptr;
+		leading_flag = NO;
+	}
 	return return_data_buffer;
 }
 
+
+void get_unread_ptr(u8** ptr_1,u8** ptr_2,u32* len_1,u32* len_2, u8 preview)	//获取未读数据所在的位置
+{
+	if (read_location_ptr < write_location_ptr)									//判断read是否超前write
+	{
+		*ptr_1 = read_location_ptr;
+		*len_1 = write_location_ptr - read_location_ptr;
+		*ptr_2 = NULL_PTR;
+		*len_2 = 0;
+	}
+	else if(read_location_ptr == write_location_ptr && leading_flag == NO)		//没有未读数据
+	{
+		*ptr_1 = NULL_PTR;
+		*len_1 = 0;
+		*ptr_2 = NULL_PTR;
+		*len_2 = 0;
+	}
+	else																		//分段存在的数据（read  > write）
+	{
+		*ptr_1 = read_location_ptr;
+		*len_1 = end_ringbuffer_ptr - read_location_ptr;
+		*ptr_2 = start_ringbuffer_ptr;
+		*len_2 = write_location_ptr - start_ringbuffer_ptr;
+	}
+	if (preview == NO)															//是否是预览模式，预览模式下不修改读指针
+	{
+		read_location_ptr = write_location_ptr;
+		leading_flag = NO;
+	}
+}

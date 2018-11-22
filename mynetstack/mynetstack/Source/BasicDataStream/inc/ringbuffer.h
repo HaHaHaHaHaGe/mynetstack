@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////
 //创建时间：2018-11-16
-//修改时间：2018-11-16
+//修改时间：2018-11-22
 //创建人员：HaHaHaHaHaGe
 //修改人员：HaHaHaHaHaGe
 //主要功能：ringbuffer中主要实现数据缓冲功能。环形的读取可以有效
@@ -23,11 +23,19 @@
 //增加读取函数
 //u8* get_unread_data(u32 *len);
 //用于一口气读出所有的未读数据
+//
+//2018-11-22
+//将u8* get_unread_data(u32 *len,u8 preview);
+//增加入口参数preview
+//增加函数
+//void get_unread_ptr(u8** ptr_1, u8** ptr_2, u32* len_1, u32* len_2, u8 preview);
+//用于直接返回未读数据的指针（效率最高，但是会为两部分）
+//修复get_unread_data函数存在的bug（未考虑超前态）
 //////////////////////////////////////////////////////////////////
 #ifndef  __RINGBUFFER_H__
 #define __RINGBUFFER_H__
-#include "basic_header.h"
-
+#include "../../Factory/basic_header.h"
+#include "../../Factory/inc/basic_function.h"
 /*
 写数据到缓冲区函数
 入口参数：
@@ -70,6 +78,22 @@ void write_buffer_len(u32 datalen);
 获取全部未读数据
 入口参数：
 len: 读出数据的长度（字节）
+preview：若为YES则此次读取不会修改ringbuff内指针状态
 */
-u8* get_unread_data(u32 *len);
+u8* get_unread_data(u32 *len,u8 preview);
+
+
+
+
+
+/*
+获取全部未读数据的指针（分两部分）
+入口参数：
+ptr_1: 保存第一个指针
+ptr_2: 保存第二个指针
+len_1: 第一个指针内容的大小（字节）
+len_2: 第二个指针内容的大小（字节）
+preview：若为YES则此次读取不会修改ringbuff内指针状态
+*/
+void get_unread_ptr(u8** ptr_1, u8** ptr_2, u32* len_1, u32* len_2, u8 preview);
 #endif //  __RINGBUFFER_H_

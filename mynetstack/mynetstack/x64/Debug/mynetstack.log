@@ -1,14 +1,21 @@
-﻿  basic_function.c
-  main_test.c
-  ringbuffer.c
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(73): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(112): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(118): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(125): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(157): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(158): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(160): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(163): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\ringbuffer.c(164): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+﻿  ringbuffer.c
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(75): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(114): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(120): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(127): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(159): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(169): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(170): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(185): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(199): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(201): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+  basic_function.c
+  ringbuffer_test.c
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(5): error C2082: 形参“i”的重定义
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(13): warning C4013: “initial_buffer”未定义；假设外部返回 int
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(19): warning C4013: “rand”未定义；假设外部返回 int
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(25): warning C4013: “write_buffer_data”未定义；假设外部返回 int
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(26): warning C4013: “get_unread_ptr”未定义；假设外部返回 int
+  test_main.c
   正在生成代码...
-  mynetstack.vcxproj -> C:\Users\82312\Desktop\GitTEST\mynetstack\mynetstack\x64\Debug\mynetstack.exe
+c:\users\82312\desktop\gittest\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(177): warning C4715: “get_unread_data”: 不是所有的控件路径都返回值

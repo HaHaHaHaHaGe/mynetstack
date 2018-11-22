@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\BasicDataStream\inc\ringbuffer.h" />
+    <ClInclude Include="Source\Factory\basic_header.h" />
+    <ClInclude Include="Source\Factory\basic_macro.h" />
+    <ClInclude Include="Source\Factory\basic_type.h" />
+    <ClInclude Include="Source\Factory\inc\basic_function.h" />
+    <ClInclude Include="Source\test_code\test_main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\BasicDataStream\src\ringbuffer.c" />
+    <ClCompile Include="Source\Factory\src\basic_function.c" />
+    <ClCompile Include="Source\test_code\ringbuffer_test.c" />
+    <ClCompile Include="Source\test_code\test_main.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{5980523A-2BD6-4A83-8ABF-E8D364C81F81}</ProjectGuid>
@@ -114,18 +128,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="basic_function.c" />
-    <ClCompile Include="main_test.c" />
-    <ClCompile Include="ringbuffer.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="basic_function.h" />
-    <ClInclude Include="basic_header.h" />
-    <ClInclude Include="basic_macro.h" />
-    <ClInclude Include="basic_type.h" />
-    <ClInclude Include="ringbuffer.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

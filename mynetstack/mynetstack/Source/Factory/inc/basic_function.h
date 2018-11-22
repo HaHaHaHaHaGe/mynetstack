@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////
 //创建时间：2018-11-16
-//修改时间：2018-11-16
+//修改时间：2018-11-21
 //创建人员：HaHaHaHaHaGe
 //修改人员：HaHaHaHaHaGe
 //主要功能：basic_function中定义了与本协议栈无关的工具类函数
@@ -19,9 +19,8 @@
 //////////////////////////////////////////////////////////////////
 #ifndef __BASIC_FUNCTION_H__
 #define __BASIC_FUNCTION_H__
-#include <malloc.h>
-#include <string.h>
-#include "basic_type.h"
+
+#include "../basic_header.h"
 
 /*
 分配内存

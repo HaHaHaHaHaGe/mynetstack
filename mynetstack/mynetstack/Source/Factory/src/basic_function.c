@@ -1,4 +1,4 @@
-#include "basic_function.h"
+#include "../inc/basic_function.h"
 
 void* basic_malloc(u32 size)
 {
