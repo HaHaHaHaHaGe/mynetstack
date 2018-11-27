@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////
 //创建时间：2018-11-16
-//修改时间：2018-11-22
+//修改时间：2018-11-27
 //创建人员：HaHaHaHaHaGe
 //修改人员：HaHaHaHaHaGe
 //主要功能：ringbuffer中主要实现数据缓冲功能。环形的读取可以有效
@@ -31,18 +31,54 @@
 //void get_unread_ptr(u8** ptr_1, u8** ptr_2, u32* len_1, u32* len_2, u8 preview);
 //用于直接返回未读数据的指针（效率最高，但是会为两部分）
 //修复get_unread_data函数存在的bug（未考虑超前态）
+//
+//2018-11-27
+//修复get_unread_data函数没有对输入的*len进行赋值造成野指针的bug
+//修改全部函数，并增加结构体ringbuffer，使用此结构可初始化不同的实例
+//修改initial_buffer增加参数u8 self_mem，用于标志是否自行分配内存
 //////////////////////////////////////////////////////////////////
 #ifndef  __RINGBUFFER_H__
 #define __RINGBUFFER_H__
 #include "../../Factory/basic_header.h"
 #include "../../Factory/inc/basic_function.h"
+
+
+
+
+/*
+用于存储ringbuffer中的关键全局变量
+使用此结构可构建不同的ringbuffer
+*/
+typedef struct ringbuffer
+{
+	u8* start_ringbuffer_ptr;															//缓冲区起始位置
+	u8* end_ringbuffer_ptr;																//缓冲区截止位置
+	u8* write_location_ptr;																//写数据位置
+	u8* read_location_ptr;																//读数据位置
+
+	u8* return_data_buffer;																//用于返回的数据组
+
+	u32 ringbuffer_size;																//缓冲区大小
+	u8 malloc_flag;																		//改缓冲区是否是自行创建的
+
+	u8 leading_flag;																	//当前写数据是否领先读数据一个周期
+
+}ringbuffer;
+
+
+
+
+
+
+
+
 /*
 写数据到缓冲区函数
 入口参数：
 data:写入的数据指针
 datalen:写入的数据长度
 */
-void write_buffer_data(u8* data, u32 datalen);
+void write_buffer_data(ringbuffer *ptr, u8* data, u32 datalen);
 
 
 /*
@@ -51,7 +87,7 @@ void write_buffer_data(u8* data, u32 datalen);
 那么该函数只会清理此模块内部的变量，
 不会更改外部的数据
 */
-u8 deinitial_buffer(void);
+u8 deinitial_buffer(ringbuffer *ptr);
 
 
 
@@ -63,7 +99,7 @@ u8 deinitial_buffer(void);
 ptr: 指定外部内存空间，无时需要填写NULL_PTR
 size: 需要开辟空间的大小
 */
-u8 initial_buffer(u8* ptr, u32 size);
+u8 initial_buffer(ringbuffer *ptr, u8 self_mem, u32 size);
 
 
 /*
@@ -71,7 +107,7 @@ u8 initial_buffer(u8* ptr, u32 size);
 入口参数：
 datalen:外部写入的数据长度
 */
-void write_buffer_len(u32 datalen);
+void write_buffer_len(ringbuffer *ptr, u32 datalen);
 
 
 /*
@@ -80,7 +116,7 @@ void write_buffer_len(u32 datalen);
 len: 读出数据的长度（字节）
 preview：若为YES则此次读取不会修改ringbuff内指针状态
 */
-u8* get_unread_data(u32 *len,u8 preview);
+u8* get_unread_data(ringbuffer *ptr, u32 *len,u8 preview);
 
 
 
@@ -95,5 +131,5 @@ len_1: 第一个指针内容的大小（字节）
 len_2: 第二个指针内容的大小（字节）
 preview：若为YES则此次读取不会修改ringbuff内指针状态
 */
-void get_unread_ptr(u8** ptr_1, u8** ptr_2, u32* len_1, u32* len_2, u8 preview);
+void get_unread_ptr(ringbuffer *ptr, u8** ptr_1, u8** ptr_2, u32* len_1, u32* len_2, u8 preview);
 #endif //  __RINGBUFFER_H_

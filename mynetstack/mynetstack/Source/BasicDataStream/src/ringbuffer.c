@@ -1,90 +1,84 @@
 #include "../inc/ringbuffer.h"
 
 
-u8* start_ringbuffer_ptr;															//»º³åÇøÆğÊ¼Î»ÖÃ
-u8* end_ringbuffer_ptr;																//»º³åÇø½ØÖ¹Î»ÖÃ
-u8* write_location_ptr;																//Ğ´Êı¾İÎ»ÖÃ
-u8* read_location_ptr;																//¶ÁÊı¾İÎ»ÖÃ
 
-u8* return_data_buffer;																//ÓÃÓÚ·µ»ØµÄÊı¾İ×é
-
-u32 ringbuffer_size;																//»º³åÇø´óĞ¡
-u8 malloc_flag;																		//¸Ä»º³åÇøÊÇ·ñÊÇ×ÔĞĞ´´½¨µÄ
-
-u8 leading_flag;																	//µ±Ç°Ğ´Êı¾İÊÇ·ñÁìÏÈ¶ÁÊı¾İÒ»¸öÖÜÆÚ
-
-u8 initial_buffer(u8* ptr,u32 size)
+u8 initial_buffer(ringbuffer *ptr,u8 self_mem,u32 size)
 {
-	if (ptr != NULL_PTR)															//ÅĞ¶ÏÊÇ·ñÊÇÌá¹©ºÃµÄ¿Õ¼ä
+	if (ptr == NULL_PTR)
+		return FAIL;
+
+	if (self_mem == NO)															//ÅĞ¶ÏÊÇ·ñÊÇÌá¹©ºÃµÄ¿Õ¼ä
 	{
-		start_ringbuffer_ptr = ptr;													//¼ÇÂ¼Ìá¹©µÄ¿Õ¼äÖ¸Õë
-		malloc_flag = NO;															//¼ÇÂ¼ÊÇ²»ÊÇ×ÔĞĞ·ÖÅäµÄ¿Õ¼ä
+		ptr->malloc_flag = NO;															//¼ÇÂ¼ÊÇ²»ÊÇ×ÔĞĞ·ÖÅäµÄ¿Õ¼ä
 	}
 	else
 	{
-		start_ringbuffer_ptr = basic_malloc(size);									//ÄÚ´æ·ÖÅäÓë³É¹¦Óë·ñ¼ì²â							
-		if (start_ringbuffer_ptr == 0)
+		ptr->start_ringbuffer_ptr = basic_malloc(size);									//ÄÚ´æ·ÖÅäÓë³É¹¦Óë·ñ¼ì²â							
+		if (ptr->start_ringbuffer_ptr == 0)
 			return FAIL;
-		malloc_flag = YES;															//¼ÇÂ¼ÊÇ×ÔĞĞ·ÖÅäµÄ¿Õ¼ä
+		ptr->malloc_flag = YES;															//¼ÇÂ¼ÊÇ×ÔĞĞ·ÖÅäµÄ¿Õ¼ä
 	}
-	return_data_buffer = basic_malloc(size);										//·ÖÅäÓÃÓÚ·µ»Ø¶ÁÈ¡µÄ¿Õ¼ä
-	end_ringbuffer_ptr = start_ringbuffer_ptr + size;
-	write_location_ptr = start_ringbuffer_ptr;										//³õÊ¼»¯Ïà¹ØÖ¸Õë
-	read_location_ptr = start_ringbuffer_ptr;
-	ringbuffer_size = size;															//±£´æ·ÖÅäµÄ¿Õ¼ä´óĞ¡
-	leading_flag = NO;
+	ptr->return_data_buffer = basic_malloc(size);										//·ÖÅäÓÃÓÚ·µ»Ø¶ÁÈ¡µÄ¿Õ¼ä
+	ptr->end_ringbuffer_ptr = ptr->start_ringbuffer_ptr + size;
+	ptr->write_location_ptr = ptr->start_ringbuffer_ptr;										//³õÊ¼»¯Ïà¹ØÖ¸Õë
+	ptr->read_location_ptr = ptr->start_ringbuffer_ptr;
+	ptr->ringbuffer_size = size;															//±£´æ·ÖÅäµÄ¿Õ¼ä´óĞ¡
+	ptr->leading_flag = NO;
 	return SUCCESS;
 }
 
 
 
-u8 deinitial_buffer(void)
+u8 deinitial_buffer(ringbuffer *ptr)
 {
-	if (malloc_flag == YES)															//ÅĞ¶ÏÊÇ·ñÊÇ×ÔĞĞ·ÖÅäµÄ¿Õ¼ä
-		basic_free(start_ringbuffer_ptr);											//ÊÍ·Å¿Õ¼ä
-	ringbuffer_size = 0;
-	basic_free(return_data_buffer);
-	start_ringbuffer_ptr = NULL_PTR;												//·ÀÖ¹Ò°Ö¸Õë
-	end_ringbuffer_ptr = NULL_PTR;
-	write_location_ptr = NULL_PTR;
-	read_location_ptr = NULL_PTR;
-	return_data_buffer = NULL_PTR;
+	if (ptr == NULL_PTR)
+		return FAIL;
+	if (ptr->malloc_flag == YES)															//ÅĞ¶ÏÊÇ·ñÊÇ×ÔĞĞ·ÖÅäµÄ¿Õ¼ä
+		basic_free(ptr->start_ringbuffer_ptr);											//ÊÍ·Å¿Õ¼ä
+	ptr->ringbuffer_size = 0;
+	basic_free(ptr->return_data_buffer);
+	ptr->start_ringbuffer_ptr = NULL_PTR;												//·ÀÖ¹Ò°Ö¸Õë
+	ptr->end_ringbuffer_ptr = NULL_PTR;
+	ptr->write_location_ptr = NULL_PTR;
+	ptr->read_location_ptr = NULL_PTR;
+	ptr->return_data_buffer = NULL_PTR;
 	return SUCCESS;
 }
 
 
 
 
-void write_buffer_len(u32 datalen)
+void write_buffer_len(ringbuffer *ptr,u32 datalen)
 {
 	u32 write_len;																	//Ğ´Êı¾İ´óĞ¡											
-
-	if (write_location_ptr + datalen < end_ringbuffer_ptr)							//µ±Ğ´ÈëÊı¾İÁ¿ÔÚ write Óë end Ö®¼äÊ±
+	if (ptr == NULL_PTR)
+		return FAIL;
+	if (ptr->write_location_ptr + datalen < ptr->end_ringbuffer_ptr)							//µ±Ğ´ÈëÊı¾İÁ¿ÔÚ write Óë end Ö®¼äÊ±
 	{
-		write_location_ptr += datalen % ringbuffer_size;
-		if (leading_flag == YES)
-			read_location_ptr = write_location_ptr;
+		ptr->write_location_ptr += datalen % ptr->ringbuffer_size;
+		if (ptr->leading_flag == YES)
+			ptr->read_location_ptr = ptr->write_location_ptr;
 	}
-	else if ((datalen - 1) / ringbuffer_size > 0)									//µ±Ğ´ÈëÊı¾İ´óÓÚÕû¸ö»º³åÇøÊ±
+	else if ((datalen - 1) / ptr->ringbuffer_size > 0)									//µ±Ğ´ÈëÊı¾İ´óÓÚÕû¸ö»º³åÇøÊ±
 	{
-		write_location_ptr = start_ringbuffer_ptr + (read_location_ptr - start_ringbuffer_ptr);
-		leading_flag = YES;
+		ptr->write_location_ptr = ptr->start_ringbuffer_ptr + (ptr->read_location_ptr - ptr->start_ringbuffer_ptr);
+		ptr->leading_flag = YES;
 	}
 	else																			//µ±Ğ´ÈëÊı¾İÁ¿ÔÚ»º³åÇø´óĞ¡ÄÚ µ« ²»ÔÚwrite Óë end Ö®¼äÊ±
 	{
-		write_len = datalen - (end_ringbuffer_ptr - write_location_ptr);
-		write_location_ptr = start_ringbuffer_ptr;
-		if (write_len + start_ringbuffer_ptr >= read_location_ptr)
+		write_len = datalen - (ptr->end_ringbuffer_ptr - ptr->write_location_ptr);
+		ptr->write_location_ptr = ptr->start_ringbuffer_ptr;
+		if (write_len + ptr->start_ringbuffer_ptr >= ptr->read_location_ptr)
 		{
-			leading_flag = YES;
-			if (write_len == ringbuffer_size)
-				read_location_ptr = start_ringbuffer_ptr;
+			ptr->leading_flag = YES;
+			if (write_len == ptr->ringbuffer_size)
+				ptr->read_location_ptr = ptr->start_ringbuffer_ptr;
 			else
-				read_location_ptr = write_location_ptr + write_len;
+				ptr->read_location_ptr = ptr->write_location_ptr + write_len;
 		}
-		write_location_ptr += write_len;
-		if (leading_flag == YES)
-			read_location_ptr = write_location_ptr;
+		ptr->write_location_ptr += write_len;
+		if (ptr->leading_flag == YES)
+			ptr->read_location_ptr = ptr->write_location_ptr;
 	}
 }
 
@@ -92,102 +86,108 @@ void write_buffer_len(u32 datalen)
 
 
 
-void write_buffer_data(u8* data, u32 datalen)
+void write_buffer_data(ringbuffer *ptr, u8* data, u32 datalen)
 {
 	u32 write_len;																	//Ğ´Êı¾İ´óĞ¡
 	u8* read_ptr;																	//¶ÁÊı¾İÖ¸Õë
 	u32 _len;																		//ÁÙÊ±ÓÃÓÚ±£´æÉÏ´Î¶ÁÊı¾İµÄ´óĞ¡
-
-	if (write_location_ptr + datalen < end_ringbuffer_ptr)							//µ±Ğ´ÈëÊı¾İÁ¿ÔÚ write Óë end Ö®¼äÊ±
+	if (ptr == NULL_PTR)
+		return FAIL;
+	if (ptr->write_location_ptr + datalen < ptr->end_ringbuffer_ptr)							//µ±Ğ´ÈëÊı¾İÁ¿ÔÚ write Óë end Ö®¼äÊ±
 	{
 		write_len = datalen;
 		read_ptr = data;
 		while (write_len--)
-			*(write_location_ptr++) = *(read_ptr++);
-		if (write_location_ptr == end_ringbuffer_ptr)
-			write_location_ptr = start_ringbuffer_ptr;
-		if (leading_flag == YES)
-			read_location_ptr = write_location_ptr;
+			*(ptr->write_location_ptr++) = *(read_ptr++);
+		if (ptr->write_location_ptr == ptr->end_ringbuffer_ptr)
+			ptr->write_location_ptr = ptr->start_ringbuffer_ptr;
+		if (ptr->leading_flag == YES)
+			ptr->read_location_ptr = ptr->write_location_ptr;
 	}
-	else if ((datalen - 1) / ringbuffer_size > 0)									//µ±Ğ´ÈëÊı¾İ´óÓÚÕû¸ö»º³åÇøÊ±
+	else if ((datalen - 1) / ptr->ringbuffer_size > 0)									//µ±Ğ´ÈëÊı¾İ´óÓÚÕû¸ö»º³åÇøÊ±
 	{
-		write_len = end_ringbuffer_ptr - read_location_ptr;
-		read_ptr = data + datalen - ringbuffer_size;
-		write_location_ptr = read_location_ptr;
+		write_len = ptr->end_ringbuffer_ptr - ptr->read_location_ptr;
+		read_ptr = data + datalen - ptr->ringbuffer_size;
+		ptr->write_location_ptr = ptr->read_location_ptr;
 		while (write_len--)
-			*(write_location_ptr++) = *(read_ptr++);
-		write_location_ptr = start_ringbuffer_ptr;
-		write_len = read_location_ptr - start_ringbuffer_ptr;
+			*(ptr->write_location_ptr++) = *(read_ptr++);
+		ptr->write_location_ptr = ptr->start_ringbuffer_ptr;
+		write_len = ptr->read_location_ptr - ptr->start_ringbuffer_ptr;
 		while (write_len--)
-			*(write_location_ptr++) = *(read_ptr++);
-		leading_flag = YES;
+			*(ptr->write_location_ptr++) = *(read_ptr++);
+		ptr->leading_flag = YES;
 	}
 	else																			//µ±Ğ´ÈëÊı¾İÁ¿ÔÚ»º³åÇø´óĞ¡ÄÚ µ« ²»ÔÚwrite Óë end Ö®¼äÊ±
 	{
-		write_len = end_ringbuffer_ptr - write_location_ptr;
+		write_len = ptr->end_ringbuffer_ptr - ptr->write_location_ptr;
 		_len = write_len;
 		read_ptr = data;
 		while (write_len--)
-			*(write_location_ptr++) = *(read_ptr++);
-		write_location_ptr = start_ringbuffer_ptr;
+			*(ptr->write_location_ptr++) = *(read_ptr++);
+		ptr->write_location_ptr = ptr->start_ringbuffer_ptr;
 		write_len = datalen - _len;
 
 
 
-		if (write_len + start_ringbuffer_ptr >= read_location_ptr)
+		if (write_len + ptr->start_ringbuffer_ptr >= ptr->read_location_ptr)
 		{
-			leading_flag = YES;
-			if (write_len == ringbuffer_size)
-				read_location_ptr = start_ringbuffer_ptr;
+			ptr->leading_flag = YES;
+			if (write_len == ptr->ringbuffer_size)
+				ptr->read_location_ptr = ptr->start_ringbuffer_ptr;
 			else
-				read_location_ptr = write_location_ptr + write_len;
+				ptr->read_location_ptr = ptr->write_location_ptr + write_len;
 		}
 		while (write_len--)
-			*(write_location_ptr++) = *(read_ptr++);
-		if (leading_flag == YES)
-			read_location_ptr = write_location_ptr;
+			*(ptr->write_location_ptr++) = *(read_ptr++);
+		if (ptr->leading_flag == YES)
+			ptr->read_location_ptr = ptr->write_location_ptr;
 	}
 
 }
 
 
 
-u8* get_unread_data(u32 *len, u8 preview)										//»ñÈ¡ËùÓĞÎ´¶ÁÊı¾İ
+u8* get_unread_data(ringbuffer *ptr, u32 *len, u8 preview)										//»ñÈ¡ËùÓĞÎ´¶ÁÊı¾İ
 {
-	if (read_location_ptr < write_location_ptr)									//ÅĞ¶ÏreadÊÇ·ñ³¬Ç°write
+	if (ptr == NULL_PTR)
+		return FAIL;
+	if (ptr->read_location_ptr < ptr->write_location_ptr)									//ÅĞ¶ÏreadÊÇ·ñ³¬Ç°write
 	{
-		basic_memcpy(return_data_buffer, read_location_ptr, write_location_ptr - read_location_ptr);
-
+		basic_memcpy(ptr->return_data_buffer, ptr->read_location_ptr, ptr->write_location_ptr - ptr->read_location_ptr);
+		*len = ptr->write_location_ptr - ptr->read_location_ptr;
 	}
-	else if (read_location_ptr == write_location_ptr && leading_flag == NO)		//Ã»ÓĞÎ´¶ÁÊı¾İ
+	else if (ptr->read_location_ptr == ptr->write_location_ptr && ptr->leading_flag == NO)		//Ã»ÓĞÎ´¶ÁÊı¾İ
 	{
 		*len = 0;
 		return NULL_PTR;
 	}
 	else																		//·Ö¶Î´æÔÚµÄÊı¾İ£¨read  > write£©
 	{
-		basic_memcpy(return_data_buffer, read_location_ptr, end_ringbuffer_ptr - read_location_ptr);
-		basic_memcpy(return_data_buffer + (end_ringbuffer_ptr - read_location_ptr), start_ringbuffer_ptr, write_location_ptr - start_ringbuffer_ptr);
+		basic_memcpy(ptr->return_data_buffer, ptr->read_location_ptr, ptr->end_ringbuffer_ptr - ptr->read_location_ptr);
+		basic_memcpy(ptr->return_data_buffer + (ptr->end_ringbuffer_ptr - ptr->read_location_ptr), ptr->start_ringbuffer_ptr, ptr->write_location_ptr - ptr->start_ringbuffer_ptr);
+		*len = ptr->end_ringbuffer_ptr - ptr->read_location_ptr + ptr->write_location_ptr - ptr->start_ringbuffer_ptr;
 	}
 	if (preview == NO)															//ÊÇ·ñÊÇÔ¤ÀÀÄ£Ê½£¬Ô¤ÀÀÄ£Ê½ÏÂ²»ĞŞ¸Ä¶ÁÖ¸Õë
 	{
-		read_location_ptr = write_location_ptr;
-		leading_flag = NO;
+		ptr->read_location_ptr = ptr->write_location_ptr;
+		ptr->leading_flag = NO;
 	}
-	return return_data_buffer;
+	return ptr->return_data_buffer;
 }
 
 
-void get_unread_ptr(u8** ptr_1,u8** ptr_2,u32* len_1,u32* len_2, u8 preview)	//»ñÈ¡Î´¶ÁÊı¾İËùÔÚµÄÎ»ÖÃ
+void get_unread_ptr(ringbuffer *ptr, u8** ptr_1,u8** ptr_2,u32* len_1,u32* len_2, u8 preview)	//»ñÈ¡Î´¶ÁÊı¾İËùÔÚµÄÎ»ÖÃ
 {
-	if (read_location_ptr < write_location_ptr)									//ÅĞ¶ÏreadÊÇ·ñ³¬Ç°write
+	if (ptr == NULL_PTR)
+		return FAIL;
+	if (ptr->read_location_ptr < ptr->write_location_ptr)									//ÅĞ¶ÏreadÊÇ·ñ³¬Ç°write
 	{
-		*ptr_1 = read_location_ptr;
-		*len_1 = write_location_ptr - read_location_ptr;
+		*ptr_1 = ptr->read_location_ptr;
+		*len_1 = ptr->write_location_ptr - ptr->read_location_ptr;
 		*ptr_2 = NULL_PTR;
 		*len_2 = 0;
 	}
-	else if(read_location_ptr == write_location_ptr && leading_flag == NO)		//Ã»ÓĞÎ´¶ÁÊı¾İ
+	else if(ptr->read_location_ptr == ptr->write_location_ptr && ptr->leading_flag == NO)		//Ã»ÓĞÎ´¶ÁÊı¾İ
 	{
 		*ptr_1 = NULL_PTR;
 		*len_1 = 0;
@@ -196,14 +196,14 @@ void get_unread_ptr(u8** ptr_1,u8** ptr_2,u32* len_1,u32* len_2, u8 preview)	//»
 	}
 	else																		//·Ö¶Î´æÔÚµÄÊı¾İ£¨read  > write£©
 	{
-		*ptr_1 = read_location_ptr;
-		*len_1 = end_ringbuffer_ptr - read_location_ptr;
-		*ptr_2 = start_ringbuffer_ptr;
-		*len_2 = write_location_ptr - start_ringbuffer_ptr;
+		*ptr_1 = ptr->read_location_ptr;
+		*len_1 = ptr->end_ringbuffer_ptr - ptr->read_location_ptr;
+		*ptr_2 = ptr->start_ringbuffer_ptr;
+		*len_2 = ptr->write_location_ptr - ptr->start_ringbuffer_ptr;
 	}
 	if (preview == NO)															//ÊÇ·ñÊÇÔ¤ÀÀÄ£Ê½£¬Ô¤ÀÀÄ£Ê½ÏÂ²»ĞŞ¸Ä¶ÁÖ¸Õë
 	{
-		read_location_ptr = write_location_ptr;
-		leading_flag = NO;
+		ptr->read_location_ptr = ptr->write_location_ptr;
+		ptr->leading_flag = NO;
 	}
 }
