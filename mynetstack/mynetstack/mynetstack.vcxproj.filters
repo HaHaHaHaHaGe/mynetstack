@@ -39,6 +39,12 @@
     <ClInclude Include="Source\test_code\test_main.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BasicDataStream\inc\packeg_taken.h">
+      <Filter>BasicDataStream</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Factory\inc\basic_crc32.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BasicDataStream\src\ringbuffer.c">
@@ -51,6 +57,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Source\test_code\test_main.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BasicDataStream\src\packeg_taken.c">
+      <Filter>BasicDataStream</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Factory\src\basic_crc32.c">
+      <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\test_code\basic_crc32_test.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -36,6 +36,8 @@
 //修复get_unread_data函数没有对输入的*len进行赋值造成野指针的bug
 //修改全部函数，并增加结构体ringbuffer，使用此结构可初始化不同的实例
 //修改initial_buffer增加参数u8 self_mem，用于标志是否自行分配内存
+//增加void update_readlocation(ringbuffer *ptr)函数
+//用于手动更新read指针
 //////////////////////////////////////////////////////////////////
 #ifndef  __RINGBUFFER_H__
 #define __RINGBUFFER_H__
@@ -75,6 +77,7 @@ typedef struct ringbuffer
 /*
 写数据到缓冲区函数
 入口参数：
+ptr:操作对象
 data:写入的数据指针
 datalen:写入的数据长度
 */
@@ -86,6 +89,8 @@ void write_buffer_data(ringbuffer *ptr, u8* data, u32 datalen);
 注：如果在创建时指定了已经开辟好的内存，
 那么该函数只会清理此模块内部的变量，
 不会更改外部的数据
+入口参数：
+ptr:操作对象
 */
 u8 deinitial_buffer(ringbuffer *ptr);
 
@@ -96,7 +101,9 @@ u8 deinitial_buffer(ringbuffer *ptr);
 创建缓冲区函数
 注：可在创建时指定已经开辟好的内存，
 入口参数：
-ptr: 指定外部内存空间，无时需要填写NULL_PTR
+ptr:操作对象
+self_mem: 是否由本函数自行分配空间，如果不需要，
+应输入NO并在操作对象的start ptr中分配好相应的空间
 size: 需要开辟空间的大小
 */
 u8 initial_buffer(ringbuffer *ptr, u8 self_mem, u32 size);
@@ -105,6 +112,7 @@ u8 initial_buffer(ringbuffer *ptr, u8 self_mem, u32 size);
 /*
 外部写入数据后使用此函数更新内部参数
 入口参数：
+ptr:操作对象
 datalen:外部写入的数据长度
 */
 void write_buffer_len(ringbuffer *ptr, u32 datalen);
@@ -113,6 +121,7 @@ void write_buffer_len(ringbuffer *ptr, u32 datalen);
 /*
 获取全部未读数据
 入口参数：
+ptr:操作对象
 len: 读出数据的长度（字节）
 preview：若为YES则此次读取不会修改ringbuff内指针状态
 */
@@ -125,6 +134,7 @@ u8* get_unread_data(ringbuffer *ptr, u32 *len,u8 preview);
 /*
 获取全部未读数据的指针（分两部分）
 入口参数：
+ptr:操作对象
 ptr_1: 保存第一个指针
 ptr_2: 保存第二个指针
 len_1: 第一个指针内容的大小（字节）
@@ -132,4 +142,22 @@ len_2: 第二个指针内容的大小（字节）
 preview：若为YES则此次读取不会修改ringbuff内指针状态
 */
 void get_unread_ptr(ringbuffer *ptr, u8** ptr_1, u8** ptr_2, u32* len_1, u32* len_2, u8 preview);
+
+
+
+
+
+
+
+
+
+
+
+/*
+手动更新read指针
+注:一般在get_unread_ptr后根据自身情况使用
+入口参数：
+ptr:操作对象
+*/
+void update_readlocation(ringbuffer *ptr);
 #endif //  __RINGBUFFER_H_

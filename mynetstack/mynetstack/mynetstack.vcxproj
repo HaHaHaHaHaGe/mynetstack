@@ -19,16 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\BasicDataStream\inc\packeg_taken.h" />
     <ClInclude Include="Source\BasicDataStream\inc\ringbuffer.h" />
     <ClInclude Include="Source\Factory\basic_header.h" />
     <ClInclude Include="Source\Factory\basic_macro.h" />
     <ClInclude Include="Source\Factory\basic_type.h" />
+    <ClInclude Include="Source\Factory\inc\basic_crc32.h" />
     <ClInclude Include="Source\Factory\inc\basic_function.h" />
     <ClInclude Include="Source\test_code\test_main.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\BasicDataStream\src\packeg_taken.c" />
     <ClCompile Include="Source\BasicDataStream\src\ringbuffer.c" />
+    <ClCompile Include="Source\Factory\src\basic_crc32.c" />
     <ClCompile Include="Source\Factory\src\basic_function.c" />
+    <ClCompile Include="Source\test_code\basic_crc32_test.c" />
     <ClCompile Include="Source\test_code\ringbuffer_test.c" />
     <ClCompile Include="Source\test_code\test_main.c" />
   </ItemGroup>

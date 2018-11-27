@@ -207,3 +207,11 @@ void get_unread_ptr(ringbuffer *ptr, u8** ptr_1,u8** ptr_2,u32* len_1,u32* len_2
 		ptr->leading_flag = NO;
 	}
 }
+
+
+
+void update_readlocation(ringbuffer *ptr)
+{
+	ptr->read_location_ptr = ptr->write_location_ptr;
+	ptr->leading_flag = NO;
+}

@@ -20,6 +20,8 @@
 //______write_buffer_len____get_unread_ptr_____
 //增加测试函数
 //______write_buffer_len____get_unread_data_____
+//修改来自stbrumme的crc32功能及测试代码
+//并更名为______crc32_16bytes______
 //////////////////////////////////////////////////////////////////
 
 
@@ -30,7 +32,8 @@
 
 #include "../Factory/basic_header.h"
 #include "../BasicDataStream/inc/ringbuffer.h"
-
+#include "../Factory/inc/basic_crc32.h"
+#include "../Factory/inc/basic_function.h"
 /*
 入口参数:
 i: 测试次数
@@ -58,4 +61,14 @@ i: 测试次数
 返回值：成功/失败
 */
 u8 ______write_buffer_len____get_unread_data_____(u32 loop);
+
+
+
+
+/*
+入口参数:
+NumBytes: 生成测试数据的大小
+返回值：CRC校验结果
+*/
+u32 ______crc32_16bytes______(u32 NumBytes);
 #endif
