@@ -4,9 +4,6 @@
 
 u8 initial_buffer(ringbuffer *ptr,u8 self_mem,u32 size)
 {
-	if (ptr == NULL_PTR)
-		return FAIL;
-
 	if (self_mem == NO)															//判断是否是提供好的空间
 	{
 		ptr->malloc_flag = NO;															//记录是不是自行分配的空间
@@ -31,8 +28,6 @@ u8 initial_buffer(ringbuffer *ptr,u8 self_mem,u32 size)
 
 u8 deinitial_buffer(ringbuffer *ptr)
 {
-	if (ptr == NULL_PTR)
-		return FAIL;
 	if (ptr->malloc_flag == YES)															//判断是否是自行分配的空间
 		basic_free(ptr->start_ringbuffer_ptr);											//释放空间
 	ptr->ringbuffer_size = 0;
@@ -51,8 +46,6 @@ u8 deinitial_buffer(ringbuffer *ptr)
 void write_buffer_len(ringbuffer *ptr,u32 datalen)
 {
 	u32 write_len;																	//写数据大小											
-	if (ptr == NULL_PTR)
-		return FAIL;
 	if (ptr->write_location_ptr + datalen < ptr->end_ringbuffer_ptr)							//当写入数据量在 write 与 end 之间时
 	{
 		ptr->write_location_ptr += datalen % ptr->ringbuffer_size;
@@ -91,8 +84,6 @@ void write_buffer_data(ringbuffer *ptr, u8* data, u32 datalen)
 	u32 write_len;																	//写数据大小
 	u8* read_ptr;																	//读数据指针
 	u32 _len;																		//临时用于保存上次读数据的大小
-	if (ptr == NULL_PTR)
-		return FAIL;
 	if (ptr->write_location_ptr + datalen < ptr->end_ringbuffer_ptr)							//当写入数据量在 write 与 end 之间时
 	{
 		write_len = datalen;
@@ -149,8 +140,6 @@ void write_buffer_data(ringbuffer *ptr, u8* data, u32 datalen)
 
 u8* get_unread_data(ringbuffer *ptr, u32 *len, u8 preview)										//获取所有未读数据
 {
-	if (ptr == NULL_PTR)
-		return FAIL;
 	if (ptr->read_location_ptr < ptr->write_location_ptr)									//判断read是否超前write
 	{
 		basic_memcpy(ptr->return_data_buffer, ptr->read_location_ptr, ptr->write_location_ptr - ptr->read_location_ptr);
@@ -178,8 +167,6 @@ u8* get_unread_data(ringbuffer *ptr, u32 *len, u8 preview)										//获取所有未
 
 void get_unread_ptr(ringbuffer *ptr, u8** ptr_1,u8** ptr_2,u32* len_1,u32* len_2, u8 preview)	//获取未读数据所在的位置
 {
-	if (ptr == NULL_PTR)
-		return FAIL;
 	if (ptr->read_location_ptr < ptr->write_location_ptr)									//判断read是否超前write
 	{
 		*ptr_1 = ptr->read_location_ptr;

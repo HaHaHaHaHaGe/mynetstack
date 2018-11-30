@@ -142,8 +142,8 @@ u8 ______write_buffer_len____get_unread_ptr_____(u32 loop)
 
 u8 ______write_buffer_len____get_unread_data_____(u32 loop)
 {
-	u32 i, j, k, o;
-	u8* s1, *s2;
+	u32 i, k, o;
+	u8* s1;
 	u32 l, m = 0, n = 0;
 	u8* str = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	u8 check;

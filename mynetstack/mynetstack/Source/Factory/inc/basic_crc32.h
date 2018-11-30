@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////
 //创建时间：2011-11-13
-//修改时间：2018-11-27
+//修改时间：2018-11-30
 //创建人员：stbrumme
 //修改人员：HaHaHaHaHaGe
 //主要功能：fork后进行修改，主要用于数据包的crc校验
@@ -13,13 +13,17 @@
 //创始人web：https://create.stephan-brumme.com/crc32/
 //保留crc32_16bytes函数，其余删除
 //增加Little_Endian宏定义，用于切换大小端
+//
+//2018-11-30
+//移除swap函数到basic_function中，并更名为basic_swap
+//移除Little_Endian宏定义到basic_function中
 //////////////////////////////////////////////////////////////////
 #ifndef __BASIC_CRC32_H__
 #define __BASIC_CRC32_H__
 
 #include "../basic_header.h"
+#include "../inc/basic_function.h"
 
-//#define Little_Endian
 
 
 

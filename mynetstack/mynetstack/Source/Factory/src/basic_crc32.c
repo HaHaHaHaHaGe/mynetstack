@@ -565,13 +565,6 @@ const u32 Crc32Lookup[16][256] =
 	  }
 };
 
-u32 swap(u32 x)
-{
-	return (x >> 24) |
-		((x >> 8) & 0x0000FF00) |
-		((x << 8) & 0x00FF0000) |
-		(x << 24);
-}
 
 /// compute CRC32 (Slicing-by-16 algorithm)
 u32 crc32_16bytes(u32* data, u32 length, u32 previousCrc32)
@@ -590,8 +583,8 @@ u32 crc32_16bytes(u32* data, u32 length, u32 previousCrc32)
 	{
 		for (unrolling = 0; unrolling < Unroll; unrolling++)
 		{
-#if Little_Endian
-			one = *current++ ^ swap(crc);
+#ifdef Little_Endian
+			one = *current++ ^ basic_swap(crc);
 			two = *current++;
 			three = *current++;
 			four = *current++;

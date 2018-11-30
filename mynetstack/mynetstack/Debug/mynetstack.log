@@ -1,16 +1,9 @@
 ﻿  packeg_taken.c
   ringbuffer.c
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(55): warning C4098: “write_buffer_len”:“void”函数返回值
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(95): warning C4098: “write_buffer_data”:“void”函数返回值
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(153): warning C4047: “return”:“u8 *”与“int”的间接级别不同
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(182): warning C4098: “get_unread_ptr”:“void”函数返回值
   basic_crc32.c
   basic_function.c
   basic_crc32_test.c
   ringbuffer_test.c
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(146): warning C4101: “s2”: 未引用的局部变量
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(145): warning C4101: “j”: 未引用的局部变量
   test_main.c
   正在生成代码...
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(33): warning C4715: “unpacking”: 不是所有的控件路径都返回值
   mynetstack.vcxproj -> C:\Users\Administrator\Desktop\github_code\mynetstack\mynetstack\Debug\mynetstack.exe
