@@ -4,6 +4,16 @@ int main(void)
 {
 	u8 s;
 	u32 crc;
+
+	______search_packeg______(1);
+	while (1)
+	{
+
+	}
+
+
+
+
 	s = ______write_buffer_len____get_unread_data_____(1000000);
 	if (s == YES)
 		printf("______write_buffer_data____get_unread_ptr_____:					YES\r\n");

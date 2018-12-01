@@ -34,6 +34,7 @@
 #include "../BasicDataStream/inc/ringbuffer.h"
 #include "../Factory/inc/basic_crc32.h"
 #include "../Factory/inc/basic_function.h"
+#include "../BasicDataStream/inc/packeg_taken.h"
 /*
 入口参数:
 i: 测试次数
@@ -71,4 +72,8 @@ NumBytes: 生成测试数据的大小
 返回值：CRC校验结果
 */
 u32 ______crc32_16bytes______(u32 NumBytes);
+
+
+
+u32 ______search_packeg______(u32 loop);
 #endif

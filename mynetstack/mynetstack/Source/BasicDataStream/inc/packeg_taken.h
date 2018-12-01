@@ -26,13 +26,6 @@
 #define __REDUCTION_DATA_LENGTH__ 1024
 
 
-//原始数据包包头
-const u8 packet_header[4] = {0xFF,0xFF,0xFF,0xFF};
-
-
-
-
-
 
 
 /*

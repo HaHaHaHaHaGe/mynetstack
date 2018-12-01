@@ -68,5 +68,8 @@
     <ClCompile Include="Source\test_code\basic_crc32_test.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Source\test_code\packeg_taken_test.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
