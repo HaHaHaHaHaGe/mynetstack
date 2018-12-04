@@ -5,7 +5,12 @@ int main(void)
 	u8 s;
 	u32 crc;
 
-	______search_packeg______(1);
+
+	s = ______search_packeg______(1000000);
+	if (s == YES)
+		printf("______search_packeg______:					YES\r\n");
+	else
+		printf("______search_packeg______:					NO\r\n");
 	while (1)
 	{
 

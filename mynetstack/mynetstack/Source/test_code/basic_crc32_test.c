@@ -7,6 +7,7 @@ u32 ______crc32_16bytes______(u32 NumBytes)
 	u8* data;
 	u32 i;
 	u32 randomNumber = 0x27121978;
+	u8* str = "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
 	 // initialize
 	data = basic_malloc(NumBytes);
 	for (i = 0; i < NumBytes; i++)
@@ -17,6 +18,6 @@ u32 ______crc32_16bytes______(u32 NumBytes)
 	}
 
 	crc = crc32_16bytes((u32*)data, NumBytes,0);
-
+	crc = crc32_16bytes((u32*)str, 100, 0);
   return crc;
 }

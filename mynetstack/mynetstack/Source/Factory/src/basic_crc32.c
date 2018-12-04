@@ -583,28 +583,28 @@ u32 crc32_16bytes(u32* data, u32 length, u32 previousCrc32)
 	{
 		for (unrolling = 0; unrolling < Unroll; unrolling++)
 		{
-#ifdef Little_Endian
-			one = *current++ ^ basic_swap(crc);
-			two = *current++;
-			three = *current++;
-			four = *current++;
-			crc = Crc32Lookup[0][four & 0xFF] ^
-				Crc32Lookup[1][(four >> 8) & 0xFF] ^
-				Crc32Lookup[2][(four >> 16) & 0xFF] ^
-				Crc32Lookup[3][(four >> 24) & 0xFF] ^
-				Crc32Lookup[4][three & 0xFF] ^
-				Crc32Lookup[5][(three >> 8) & 0xFF] ^
-				Crc32Lookup[6][(three >> 16) & 0xFF] ^
-				Crc32Lookup[7][(three >> 24) & 0xFF] ^
-				Crc32Lookup[8][two & 0xFF] ^
-				Crc32Lookup[9][(two >> 8) & 0xFF] ^
-				Crc32Lookup[10][(two >> 16) & 0xFF] ^
-				Crc32Lookup[11][(two >> 24) & 0xFF] ^
-				Crc32Lookup[12][one & 0xFF] ^
-				Crc32Lookup[13][(one >> 8) & 0xFF] ^
-				Crc32Lookup[14][(one >> 16) & 0xFF] ^
-				Crc32Lookup[15][(one >> 24) & 0xFF];
-#else
+//#ifdef Little_Endian
+//			one = *current++ ^ basic_swap(crc);
+//			two = *current++;
+//			three = *current++;
+//			four = *current++;
+//			crc = Crc32Lookup[0][four & 0xFF] ^
+//				Crc32Lookup[1][(four >> 8) & 0xFF] ^
+//				Crc32Lookup[2][(four >> 16) & 0xFF] ^
+//				Crc32Lookup[3][(four >> 24) & 0xFF] ^
+//				Crc32Lookup[4][three & 0xFF] ^
+//				Crc32Lookup[5][(three >> 8) & 0xFF] ^
+//				Crc32Lookup[6][(three >> 16) & 0xFF] ^
+//				Crc32Lookup[7][(three >> 24) & 0xFF] ^
+//				Crc32Lookup[8][two & 0xFF] ^
+//				Crc32Lookup[9][(two >> 8) & 0xFF] ^
+//				Crc32Lookup[10][(two >> 16) & 0xFF] ^
+//				Crc32Lookup[11][(two >> 24) & 0xFF] ^
+//				Crc32Lookup[12][one & 0xFF] ^
+//				Crc32Lookup[13][(one >> 8) & 0xFF] ^
+//				Crc32Lookup[14][(one >> 16) & 0xFF] ^
+//				Crc32Lookup[15][(one >> 24) & 0xFF];
+//#else
 			one = *current++ ^ crc;
 			two = *current++;
 			three = *current++;
@@ -625,7 +625,7 @@ u32 crc32_16bytes(u32* data, u32 length, u32 previousCrc32)
 				Crc32Lookup[13][(one >> 16) & 0xFF] ^
 				Crc32Lookup[14][(one >> 8) & 0xFF] ^
 				Crc32Lookup[15][one & 0xFF];
-#endif
+//#endif
 	}
 
 		length -= BytesAtOnce;
