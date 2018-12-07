@@ -157,3 +157,23 @@ u32 ______search_packeg______(u32 loop)
 	}
 	return YES;
 }
+
+
+
+
+u8 ____trans_8to7b_7to8b____(u32 loop)
+{
+	u8 *src = basic_malloc(1024 * loop);
+	u8 *dst = basic_malloc(1024 * loop);
+	u8 *src_2 = basic_malloc(1024 * loop);
+	u32 i = 0;
+	u8 flag = YES;
+	for (i = 0; i < 1024 * loop; i++)
+		src[i] = rand();
+	trans_8to7b(src, dst, 1024 * loop);
+	trans_7to8b(dst, src_2, 1024 * loop);
+	for (i = 0; i < (1024* loop *7)/8; i++)
+		if (src[i] != src_2[i])
+			flag = NO;
+	return flag;
+}

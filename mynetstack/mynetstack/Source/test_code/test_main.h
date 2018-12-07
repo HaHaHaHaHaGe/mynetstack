@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////
 //创建时间：2018-11-23
-//修改时间：2018-12-4
+//修改时间：2018-12-8
 //创建人员：HaHaHaHaHaGe
 //修改人员：HaHaHaHaHaGe
 //主要功能：测试所有代码
@@ -25,6 +25,9 @@
 //
 //2018-12-4
 //增加测试函数______search_packeg______
+//
+//2018-12-8
+//增加测试函数____trans_7to8b____
 //////////////////////////////////////////////////////////////////
 
 
@@ -40,7 +43,7 @@
 #include "../BasicDataStream/inc/packeg_taken.h"
 /*
 入口参数:
-i: 测试次数
+loop: 测试次数
 返回值：成功/失败
 */
 u8 ______write_buffer_data____get_unread_ptr_____(u32 loop);
@@ -49,7 +52,7 @@ u8 ______write_buffer_data____get_unread_ptr_____(u32 loop);
 
 /*
 入口参数:
-i: 测试次数
+loop: 测试次数
 返回值：成功/失败
 */
 u8 ______write_buffer_len____get_unread_ptr_____(u32 loop);
@@ -61,7 +64,7 @@ u8 ______write_buffer_len____get_unread_ptr_____(u32 loop);
 
 /*
 入口参数:
-i: 测试次数
+loop: 测试次数
 返回值：成功/失败
 */
 u8 ______write_buffer_len____get_unread_data_____(u32 loop);
@@ -79,8 +82,16 @@ u32 ______crc32_16bytes______(u32 NumBytes);
 
 /*
 入口参数:
-NumBytes: 生成测试数据的大小
-返回值：N次模拟查找数据包结果
+loop: 测试次数
+返回值：成功/失败
 */
 u32 ______search_packeg______(u32 loop);
+
+
+/*
+入口参数:
+loop: 测试次数
+返回值：成功/失败
+*/
+u8 ____trans_8to7b_7to8b____(u32 loop);
 #endif

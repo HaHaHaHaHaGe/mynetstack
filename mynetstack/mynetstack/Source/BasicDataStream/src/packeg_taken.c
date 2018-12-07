@@ -328,6 +328,46 @@ u8 search_packeg(u8*src1, u8*src2, u32 len1, u32 len2, u8**rdata_1,u8**rdata_2,u
 	return NO;
 }
 
+
+void trans_8to7b(u8 *src, u8 *dst, u32 dst_len)
+{
+	u32 len = dst_len;
+	u32 ss1;
+	while(len--)
+	{
+		ss1 = (8 * len + 1) - (8 * len + 1) / 8 - 1;
+		if (ss1 % 8)
+		{
+			dst[len] = (src[ss1 / 8] << (ss1 % 8 - 1)) & 0x7f;
+			dst[len] |= src[(ss1 + 8 - ss1 % 8) / 8] >> (9 - ss1 % 8);
+		}
+		else
+		{
+			dst[len] = src[ss1 / 8] >> 1;
+		}
+	}
+}
+
+void trans_7to8b(u8 *src, u8 *dst, u32 src_len)
+{
+	u32 len = src_len;
+	u32 ss1;
+	for (len = 0; len < src_len; len++)
+	{
+		ss1 = (8 * len + 1) - (8 * len + 1) / 8 - 1;
+		if (ss1 % 8)
+		{
+			dst[ss1 / 8] |= src[len] >> (ss1 % 8 - 1);
+			dst[(ss1 + 8 - ss1 % 8) / 8] = src[len] << (9 - ss1 % 8);
+		}
+		else
+		{
+			dst[ss1 / 8] = src[len] << 1;
+		}
+	}
+}
+
+
 u8* unpacking(u8* src1,u8* src2,u32 len1,u32 len2)
 {
 	u8 Success;
@@ -336,7 +376,7 @@ u8* unpacking(u8* src1,u8* src2,u32 len1,u32 len2)
 
 	u8 *recvdata_1, *recvdata_2;
 	u32 recvlen_1, recvlen_2;
-	u8*stop;
+	u8 *stop = NULL_PTR;
 
 	u8 *recv;
 

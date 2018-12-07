@@ -153,9 +153,6 @@ void get_unread_ptr(ringbuffer *ptr, u8** ptr_1, u8** ptr_2, u32* len_1, u32* le
 
 
 
-
-
-
 /*
 手动更新read指针
 注:一般在get_unread_ptr后根据自身情况使用
