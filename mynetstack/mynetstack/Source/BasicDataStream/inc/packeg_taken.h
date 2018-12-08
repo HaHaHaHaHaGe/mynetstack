@@ -26,6 +26,8 @@
 //增加函数trans_8to7b与trans_7to8b
 //用于将原始数据进行转化，为了进行封包/拆包操作
 //未进行优化，100MB的数据进行一次拆\装 共需要5秒（4GHZ的CPU 2700X）
+//更新算法trans_8to7b_64bytes、trans_7to8b_64bytes
+//优化后的函数，100MB的数据进行一次拆\装 共需要0.28秒（4GHZ的CPU 2700X）
 ///////////////////////////////////////////////////////////////////
 #ifndef  __PACKEG_TAKEN_H__
 #define __RINGBUFFER_H__
@@ -90,4 +92,25 @@ dst：保存8bit数据的位置
 src_len：输入的7bit数据大小
 */
 void trans_7to8b(u8 *src, u8 *dst, u32 src_len);
+
+
+/*
+将8bit数据转化成7bit数据（快速算法）
+src：输入的7bit数据
+dst：保存8bit数据的位置
+src_len：输入的7bit数据大小
+*/
+void trans_8to7b_64bytes(u8 *src, u8 *dst, u32 dst_len);
+
+
+/*
+将8bit数据转化成7bit数据（快速算法）
+src：输入的7bit数据
+dst：保存8bit数据的位置
+src_len：输入的7bit数据大小
+*/
+void trans_7to8b_64bytes(u8 *src, u8 *dst, u32 src_len);
+
+
+
 #endif

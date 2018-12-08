@@ -367,6 +367,116 @@ void trans_7to8b(u8 *src, u8 *dst, u32 src_len)
 	}
 }
 
+void trans_8to7b_64bytes(u8 *src, u8 *dst, u32 dst_len)
+{
+	u32 len = dst_len;
+	u32 ss1;
+	while (len)
+	{
+		len -= 8;
+		ss1 = len - (((len << 3) + 1) >> 6);
+
+		dst[len] = src[ss1] >> 1;
+
+		dst[len + 1] = ((src[ss1] << 6) & 0x7f) | src[ss1 + 1] >> 2;
+
+		dst[len + 2] = ((src[ss1 + 1] << 5) & 0x7f) | src[ss1 + 2] >> 3;
+
+		dst[len + 3] = ((src[ss1 + 2] << 4) & 0x7f) | src[ss1 + 3] >> 4;
+
+		dst[len + 4] = ((src[ss1 + 3] << 3) & 0x7f) | src[ss1 + 4] >> 5;
+
+		dst[len + 5] = ((src[ss1 + 4] << 2) & 0x7f) | src[ss1 + 5] >> 6;
+
+		dst[len + 6] = ((src[ss1 + 5] << 1) & 0x7f) | src[ss1 + 6] >> 7;
+
+		dst[len + 7] = src[ss1 + 6] & 0x7f;
+
+
+	}
+}
+
+void trans_7to8b_64bytes(u8 *src, u8 *dst, u32 src_len)
+{
+	u32 len = src_len;
+	u32 ss1;
+	while (len)
+	{
+		len -= 8;
+		ss1 = len - (((len << 3) + 1) >> 6);
+
+		dst[ss1] = src[len] << 1 | src[len + 1] >> 6;
+
+		dst[ss1 + 1] = src[len + 1] << 2 | src[len + 2] >> 5;
+
+		dst[ss1 + 2] = src[len + 2] << 3 | src[len + 3] >> 4;
+
+		dst[ss1 + 3] = src[len + 3] << 4 | src[len + 4] >> 3;
+
+		dst[ss1 + 4] = src[len + 4] << 5 | src[len + 5] >> 2;
+
+		dst[ss1 + 5] = src[len + 5] << 6 | src[len + 6] >> 1;
+
+		dst[ss1 + 6] = src[len + 6] << 7 | src[len + 7];
+	}
+}
+
+
+void trans_8to4b_64bytes(u8 *src, u8 *dst, u32 dst_len)
+{
+	u32 len = dst_len;
+	u32 ss1;
+	while (len)
+	{
+		len -= 8;
+		ss1 = len - ((8 * len + 1) / 64);
+
+		dst[len] = src[ss1] >> 1;
+
+		dst[len + 1] = ((src[ss1] << 6) & 0x7f) | src[ss1 + 1] >> 2;
+
+		dst[len + 2] = ((src[ss1 + 1] << 5) & 0x7f) | src[ss1 + 2] >> 3;
+
+		dst[len + 3] = ((src[ss1 + 2] << 4) & 0x7f) | src[ss1 + 3] >> 4;
+
+		dst[len + 4] = ((src[ss1 + 3] << 3) & 0x7f) | src[ss1 + 4] >> 5;
+
+		dst[len + 5] = ((src[ss1 + 4] << 2) & 0x7f) | src[ss1 + 5] >> 6;
+
+		dst[len + 6] = ((src[ss1 + 5] << 1) & 0x7f) | src[ss1 + 6] >> 7;
+
+		dst[len + 7] = src[ss1 + 6] & 0x7f;
+
+
+	}
+}
+
+void trans_4to8b_64bytes(u8 *src, u8 *dst, u32 src_len)
+{
+	u32 len = src_len;
+	u32 ss1;
+	while (len)
+	{
+		len -= 8;
+		ss1 = len - ((8 * len + 1) / 64);
+
+		dst[ss1] = src[len] << 1 | src[len + 1] >> 6;
+
+		dst[ss1 + 1] = src[len + 1] << 2 | src[len + 2] >> 5;
+
+		dst[ss1 + 2] = src[len + 2] << 3 | src[len + 3] >> 4;
+
+		dst[ss1 + 3] = src[len + 3] << 4 | src[len + 4] >> 3;
+
+		dst[ss1 + 4] = src[len + 4] << 5 | src[len + 5] >> 2;
+
+		dst[ss1 + 5] = src[len + 5] << 6 | src[len + 6] >> 1;
+
+		dst[ss1 + 6] = src[len + 6] << 7 | src[len + 7];
+	}
+}
+
+
 
 u8* unpacking(u8* src1,u8* src2,u32 len1,u32 len2)
 {
