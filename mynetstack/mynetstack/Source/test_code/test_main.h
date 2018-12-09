@@ -41,6 +41,7 @@
 #include "../Factory/inc/basic_crc32.h"
 #include "../Factory/inc/basic_function.h"
 #include "../BasicDataStream/inc/packeg_taken.h"
+#include "../BasicDataStream/inc/sdata_trans.h"
 /*
 入口参数:
 loop: 测试次数

@@ -1,4 +1,9 @@
 ﻿  packeg_taken.c
 c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(261): warning C4018: “>”: 有符号/无符号不匹配
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(494): warning C4047: “return”:“u8 *”与“int”的间接级别不同
+c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(347): warning C4047: “return”:“u8 *”与“int”的间接级别不同
+  basic_crc32_test.c
+  packeg_taken_test.c
+  ringbuffer_test.c
+  test_main.c
+  正在生成代码...
   mynetstack.vcxproj -> C:\Users\Administrator\Desktop\github_code\mynetstack\mynetstack\Debug\mynetstack.exe

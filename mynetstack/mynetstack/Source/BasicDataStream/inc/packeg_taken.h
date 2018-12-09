@@ -28,11 +28,15 @@
 //未进行优化，100MB的数据进行一次拆\装 共需要5秒（4GHZ的CPU 2700X）
 //更新算法trans_8to7b_64bytes、trans_7to8b_64bytes
 //优化后的函数，100MB的数据进行一次拆\装 共需要0.28秒（4GHZ的CPU 2700X）
+//
+//2018-12-9
+//将所有trans函数移动到专用文件sdata_trans.c中
 ///////////////////////////////////////////////////////////////////
 #ifndef  __PACKEG_TAKEN_H__
 #define __RINGBUFFER_H__
 #include "../../Factory/basic_header.h"
 #include "../../Factory/inc/basic_crc32.h"
+#include "../inc/sdata_trans.h"
 
 #define __REDUCTION_DATA_LENGTH__ 1024
 
@@ -74,43 +78,6 @@ len2:第二个数组大小
 否则返回新分配的内存地址（指向转化完毕的数据包）
 */
 u8* unpacking(u8* src1, u8* src2, u32 len1, u32 len2);
-
-
-
-/*
-将8bit数据转化成7bit数据
-src：输入的8bit数据
-dst：保存7bit数据的位置
-dst_len：保存的数组大小
-*/
-void trans_8to7b(u8 *src, u8 *dst, u32 dst_len);
-
-/*
-将8bit数据转化成7bit数据
-src：输入的7bit数据
-dst：保存8bit数据的位置
-src_len：输入的7bit数据大小
-*/
-void trans_7to8b(u8 *src, u8 *dst, u32 src_len);
-
-
-/*
-将8bit数据转化成7bit数据（快速算法）
-src：输入的7bit数据
-dst：保存8bit数据的位置
-src_len：输入的7bit数据大小
-*/
-void trans_8to7b_64bytes(u8 *src, u8 *dst, u32 dst_len);
-
-
-/*
-将8bit数据转化成7bit数据（快速算法）
-src：输入的7bit数据
-dst：保存8bit数据的位置
-src_len：输入的7bit数据大小
-*/
-void trans_7to8b_64bytes(u8 *src, u8 *dst, u32 src_len);
-
 
 
 #endif

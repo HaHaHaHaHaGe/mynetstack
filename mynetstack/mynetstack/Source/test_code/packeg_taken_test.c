@@ -163,35 +163,44 @@ u32 ______search_packeg______(u32 loop)
 
 u8 ____trans_8to7b_7to8b____(u32 loop)
 {
-	u8 *src = basic_malloc(1024 * loop);
-	u8 *dst = basic_malloc(1024 * loop);
-	u8 *src_2 = basic_malloc(1024 * loop);
+	u8 *src = basic_malloc(896 * loop);
+	u8 *dst = basic_malloc(1024 * loop + 1);
+	u8 *src_2 = basic_malloc(896 * loop);
 	u32 i = 0;
 	u8 flag = YES;
-	for (i = 0; i < 1024 * loop; i++)
+	for (i = 0; i < 896 * loop; i++)
 		src[i] = rand();
-	trans_8to7b_64bytes(src, dst, 1024 * loop);
-	trans_7to8b_64bytes(dst, src_2, 1024 * loop);
+	for (i = 0; i < 1024 * loop + 1; i++)
+		dst[i] = 0;
+	for (i = 0; i < 896 * loop; i++)
+		src_2[i] = 0;
+
+	trans_8to7b_64bytes_fast(src, dst, 896 * loop);
+	trans_7to8b_64bytes_fast(dst, src_2, 1024 * loop);
 	for (i = 0; i < (1024* loop *7)/8; i++)
 		if (src[i] != src_2[i])
 			flag = NO;
 	return flag;
 }
 
-//
-//u8 ____trans_8to7b_7to8b____2(u32 loop)
-//{
-//	u8 src[56];
-//	u8 dst[64];
-//	u8 src_2[56];
-//	u32 i = 0;
-//	u8 flag = YES;
-//	for (i = 0; i < 56; i++)
-//		src[i] = i+30;
-//	trans_8to7b_64bytes_fast(src, dst, 64);
-//	trans_7to8b_64bytes(dst, src_2, 64);
-//	for (i = 0; i < (1024 * loop * 7) / 8; i++)
-//		if (src[i] != src_2[i])
-//			flag = NO;
-//	return flag;
-//}
+
+u8 ____trans_8to7b_7to8b____1(u32 loop)
+{
+	u8 src[56];
+	u8 dst[64+1];
+	u8 src_2[56];
+	u32 i = 0;
+	u8 flag = YES;
+	for (i = 0; i < 56; i++)
+		src[i] = i+0x80;
+	for (i = 0; i < 65; i++)
+		dst[i] = 0;
+	for (i = 0; i < 56; i++)
+		src_2[i] = 0;
+	trans_8to7b_64bytes_fast(src, dst, 56);
+	trans_7to8b_64bytes_fast(dst, src_2, 64);
+	for (i = 0; i < (1024 * loop * 7) / 8; i++)
+		if (src[i] != src_2[i])
+			flag = NO;
+	return flag;
+}
