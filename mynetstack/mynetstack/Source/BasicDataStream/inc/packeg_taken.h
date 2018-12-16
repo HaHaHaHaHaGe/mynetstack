@@ -31,12 +31,18 @@
 //
 //2018-12-9
 //将所有trans函数移动到专用文件sdata_trans.c中
+//
+//2018-12-15
+//修改unpacking函数返回值
+//增加packing用于封装数据包
+//将接收到、准备发送的数据都使用链表进行存储（basic_list.h）
 ///////////////////////////////////////////////////////////////////
 #ifndef  __PACKEG_TAKEN_H__
 #define __RINGBUFFER_H__
 #include "../../Factory/basic_header.h"
 #include "../../Factory/inc/basic_crc32.h"
 #include "../inc/sdata_trans.h"
+#include "../../Factory/inc/basic_list.h"
 
 #define __REDUCTION_DATA_LENGTH__ 1024
 
@@ -75,9 +81,20 @@ len1:第一个数组大小
 len2:第二个数组大小
 返回值：
 如果没有正确数据包返回NULL_PTR
-否则返回新分配的内存地址（指向转化完毕的数据包）
+否则返回查找最后的地址
 */
 u8* unpacking(u8* src1, u8* src2, u32 len1, u32 len2);
 
 
+
+
+
+/*
+将输入的数据进行8->7的转化并增加crc与包头，并存储到发送队列
+data:准备封包的数据
+len:数据大小
+返回值：
+封装完毕的数据指针
+*/
+u8* packing(u8 *data, u32 len);
 #endif

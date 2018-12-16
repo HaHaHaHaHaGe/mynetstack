@@ -5,6 +5,11 @@ void* basic_malloc(u32 size)
 	return malloc(size);
 }
 
+void* basic_calloc(u32 size,u8 sizeof_size)
+{
+	return calloc(size, sizeof_size);
+}
+
 void basic_free(void* block)
 {
 	free(block);

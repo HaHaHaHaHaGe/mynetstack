@@ -34,7 +34,7 @@
 #include <stdio.h>
 
 
-#define Little_Endian
+//#define Little_Endian
 
 
 #endif // !__BASIC_HEADER_H__

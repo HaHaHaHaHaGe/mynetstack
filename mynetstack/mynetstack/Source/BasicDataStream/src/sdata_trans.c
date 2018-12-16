@@ -142,3 +142,7 @@ void trans_7to8b_64bytes_fast(u8 *src, u8 *dst, u32 src_len)
 		len_2++;
 	}
 }
+
+
+
+

@@ -204,3 +204,71 @@ u8 ____trans_8to7b_7to8b____1(u32 loop)
 			flag = NO;
 	return flag;
 }
+
+
+
+extern LIST recv_data_list;
+extern LIST send_data_list;
+u8 ____packing_unpackeg___(u32 loop)
+{
+	u8 *src = basic_malloc(896);
+	u8 *dst = basic_malloc(2048);
+	u8 *l1, *l2, stop;
+	u32 e1, e2;
+	u32 i,j;
+	LIST_DATA *recv;
+	ringbuffer ring;
+
+	u32 lop2 = 100;
+	u32 lop3 = loop;
+
+	u32 rrr;
+	while (lop2--)
+	{
+		loop = lop3;
+		rrr = (rand() % 1024*10) + 3108 ;
+		initial_buffer(&ring, YES, 2072);
+		while (loop--)
+		{
+			for (j = 0; j < 3; j++)
+			{
+				for (i = 0; i < 896; i++)
+				{
+					src[i] = rand() % 256;
+				}
+				dst = packing(src, 896);
+				write_buffer_data(&ring, dst, 1024 + 12);
+			}
+			if (loop == 0x3d5)
+				i = 0;
+
+			get_unread_ptr(&ring, &l1, &l2, &e1, &e2, NO);
+			stop = unpacking(l1, l2, e1, e2);
+			recv = recv_data_list.end;
+			for (i = 0; i < 896; i++)
+			{
+				if (src[i] != recv->data[i])
+					return NO;
+			}
+		}
+		recv = recv_data_list.start;
+		while (recv)
+		{
+			basic_free(recv->data);
+			Delete_List(&recv_data_list, recv);
+			recv = recv_data_list.start;
+		}
+
+		recv = send_data_list.start;
+		while (recv)
+		{
+			basic_free(recv->data);
+			Delete_List(&send_data_list, recv);
+			recv = send_data_list.start;
+		}
+		deinitial_buffer(&ring);
+
+	}
+
+	return YES;
+}

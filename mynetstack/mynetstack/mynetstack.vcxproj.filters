@@ -48,6 +48,9 @@
     <ClInclude Include="Source\BasicDataStream\inc\sdata_trans.h">
       <Filter>BasicDataStream</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Factory\inc\basic_list.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BasicDataStream\src\ringbuffer.c">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="Source\BasicDataStream\src\sdata_trans.c">
       <Filter>BasicDataStream</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Factory\src\basic_list.c">
+      <Filter>Factory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
