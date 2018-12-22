@@ -375,7 +375,7 @@ u8* unpacking(u8* src1,u8* src2,u32 len1,u32 len2)
 	u8 *recv = NULL_PTR;
 
 	if (src1 == NULL_PTR)
-		return FAIL;
+		return NULL_PTR;
 
 	while (1)
 	{
@@ -434,11 +434,11 @@ u8* packing(u8 *data,u32 len)
 	sdata[7] = ((u8*)&dlen)[3];
 	lensw = basic_swap(dlen);
 	crc = crc32_16bytes(&lensw, 4, 0xffffffff);
-	crc = crc32_16bytes(&sdata[12], dlen, crc);
+	crc = crc32_16bytes((u32*)&sdata[12], dlen, crc);
 	sdata[8] = ((u8*)&crc)[0];
 	sdata[9] = ((u8*)&crc)[1];
 	sdata[10] = ((u8*)&crc)[2];
 	sdata[11] = ((u8*)&crc)[3];
-	Add_List(&send_data_list, sdata);
+	Add_List(&send_data_list, sdata, dlen);
 	return sdata;
 }

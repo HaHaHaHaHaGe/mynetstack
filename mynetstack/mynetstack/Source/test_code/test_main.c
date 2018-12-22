@@ -5,11 +5,11 @@ int main(void)
 	u8 s;
 	u32 crc;
 
-	s = ____packing_unpackeg___(1024);
-	if (s == YES)
-		printf("____packing_unpackeg___:					YES\r\n");
-	else
-		printf("____packing_unpackeg___:					NO\r\n");
+	//s = ____packing_unpackeg___(1024);
+	//if (s == YES)
+	//	printf("____packing_unpackeg___:					YES\r\n");
+	//else
+	//	printf("____packing_unpackeg___:					NO\r\n");
 
 
 

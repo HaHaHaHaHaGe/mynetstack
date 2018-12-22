@@ -187,13 +187,13 @@ u8 ____trans_8to7b_7to8b____(u32 loop)
 u8 ____trans_8to7b_7to8b____1(u32 loop)
 {
 	u8 src[56];
-	u8 dst[64+1];
+	u8 dst[64];
 	u8 src_2[56];
 	u32 i = 0;
 	u8 flag = YES;
 	for (i = 0; i < 56; i++)
 		src[i] = i+0x80;
-	for (i = 0; i < 65; i++)
+	for (i = 0; i < 64; i++)
 		dst[i] = 0;
 	for (i = 0; i < 56; i++)
 		src_2[i] = 0;
@@ -213,7 +213,7 @@ u8 ____packing_unpackeg___(u32 loop)
 {
 	u8 *src = basic_malloc(896);
 	u8 *dst = basic_malloc(2048);
-	u8 *l1, *l2, stop;
+	u8 *l1, *l2, *stop;
 	u32 e1, e2;
 	u32 i,j;
 	LIST_DATA *recv;
