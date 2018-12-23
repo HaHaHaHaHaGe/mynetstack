@@ -231,3 +231,31 @@ void update_readlocation(ringbuffer *ptr)
 	ptr->read_location_ptr = ptr->write_location_ptr;
 	ptr->leading_flag = NO;
 }
+
+
+
+
+void update_readlocation_len(ringbuffer *ptr, u32 len)
+{
+	u32 use_space;
+	if (ptr->leading_flag == YES)
+		use_space = ptr->ringbuffer_size;
+	else
+	{
+		if (ptr->write_location_ptr > ptr->read_location_ptr)
+			use_space = ptr->write_location_ptr - ptr->read_location_ptr;
+		else if (ptr->write_location_ptr < ptr->read_location_ptr)
+			use_space = ptr->ringbuffer_size - (ptr->read_location_ptr - ptr->write_location_ptr);
+		else
+			use_space = 0;
+	}
+	if (len > use_space)
+		len = use_space;
+
+
+	if (ptr->read_location_ptr + len > ptr->end_ringbuffer_ptr)
+		ptr->read_location_ptr = ptr->start_ringbuffer_ptr + (len - (ptr->end_ringbuffer_ptr - ptr->read_location_ptr));
+	else
+		ptr->read_location_ptr += len;
+	ptr->leading_flag = NO;
+}

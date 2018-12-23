@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////
 //创建时间：2018-11-16
-//修改时间：2018-12-1
+//修改时间：2018-12-23
 //创建人员：HaHaHaHaHaGe
 //修改人员：HaHaHaHaHaGe
 //主要功能：ringbuffer中主要实现数据缓冲功能。环形的读取可以有效
@@ -41,6 +41,11 @@
 //
 //2018-12-1
 //删除部分影响效率的判断空指针代码（会增加跑飞风险）
+//
+//2018-12-23
+//增加函数
+//void update_readlocation_len(ringbuffer *ptr, u32 len)
+//用于读取指定长度的数据
 //////////////////////////////////////////////////////////////////
 #ifndef  __RINGBUFFER_H__
 #define __RINGBUFFER_H__
@@ -160,4 +165,15 @@ void get_unread_ptr(ringbuffer *ptr, u8** ptr_1, u8** ptr_2, u32* len_1, u32* le
 ptr:操作对象
 */
 void update_readlocation(ringbuffer *ptr);
+
+
+
+/*
+手动更新read指针(指定长度)
+注:一般在get_unread_ptr后根据自身情况使用
+入口参数：
+ptr:操作对象
+len:更新长度（读取长度）
+*/
+void update_readlocation_len(ringbuffer *ptr, u32 len);
 #endif //  __RINGBUFFER_H_

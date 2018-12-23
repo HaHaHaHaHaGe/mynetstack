@@ -209,4 +209,58 @@ u8 ______write_buffer_len____get_unread_data_____(u32 loop)
 }
 
 
+u8 ____update_readlocation_len____(u32 loop)
+{
+	u32 i, j, k, o,u,p;
+	u8* s1, *s2;
+	u32 l, m = 0, n = 0;
+	u8* str = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	u8 check;
+	ringbuffer ring;
+	initial_buffer(&ring, YES, strlen(str));
+	while (loop--)
+	{
+		l = rand() % (strlen(str) + 1);
+		o = 999999;
+		for (k = 0; k < l; k++)
+		{
+			if (&ring.write_location_ptr[k] == ring.end_ringbuffer_ptr)
+			{
+				o = 0;
+			}
+			if (o == 999999)
+				ring.write_location_ptr[k] = str[k];
+			else
+				ring.start_ringbuffer_ptr[o++] = str[k];
+		}
+		write_buffer_len(&ring, l);
 
+
+
+
+		u = rand() % (strlen(str) + 1);
+		while (u--)
+		{
+			p = rand() % (strlen(str) + 1);
+			get_unread_ptr(&ring, &s1, &s2, &i, &j, YES);
+			update_readlocation_len(&ring, p);
+			check = YES;
+			for (k = 0; k < ((i <= p) ? i : p); k++) {
+				if (str[k] != s1[k])
+					check = NO;
+			}
+			for (k = 0; k < ((i <= p) ? j : 0); k++) {
+				if (str[i + k] != s2[k])
+					check = NO;
+			}
+			if (check == NO)
+				m++;
+			n++;
+		}
+
+
+	}
+	if (m == 0)
+		return YES;
+	return NO;
+}
