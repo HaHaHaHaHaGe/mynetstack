@@ -180,6 +180,8 @@ u8 ______write_buffer_len____get_unread_data_____(u32 loop)
 			else
 				ring.start_ringbuffer_ptr[o++] = str[k];
 		}
+		if (loop == 999836)
+			loop = 999836;
 		write_buffer_len(&ring, l);
 		s1 = get_unread_data(&ring, &i, NO);
 #ifdef ____SHOW__DEBUG____
@@ -209,7 +211,70 @@ u8 ______write_buffer_len____get_unread_data_____(u32 loop)
 }
 
 
+
 u8 ____update_readlocation_len____(u32 loop)
+{
+	u8* str = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	ringbuffer ring;
+	u8* s1, *s2;
+	u32 i, j, k, o, u, p;
+
+	initial_buffer(&ring, YES, 10);
+	for (i = 0; i < 10; i++)
+		ring.start_ringbuffer_ptr[i] = str[i];
+	write_buffer_len(&ring, 10);
+
+
+	get_unread_ptr(&ring, &s1, &s2, &i, &j, YES);
+	for (k = 0; k < i; k++)
+		printf("%c",s1[k]);
+	for (k = 0; k < j; k++)
+		printf("%c", s2[k]);
+	printf("\r\n");
+	update_readlocation_len(&ring, 5);
+	get_unread_ptr(&ring, &s1, &s2, &i, &j, YES);
+	for (k = 0; k < i; k++)
+		printf("%c", s1[k]);
+	for (k = 0; k < j; k++)
+		printf("%c", s2[k]);
+	printf("\r\n");
+
+
+	write_buffer_len(&ring, 7);
+	get_unread_ptr(&ring, &s1, &s2, &i, &j, YES);
+	for (k = 0; k < i; k++)
+		printf("%c", s1[k]);
+	for (k = 0; k < j; k++)
+		printf("%c", s2[k]);
+	printf("\r\n");
+
+	update_readlocation_len(&ring, 1);
+	write_buffer_len(&ring, 7);
+	get_unread_ptr(&ring, &s1, &s2, &i, &j, YES);
+	for (k = 0; k < i; k++)
+		printf("%c", s1[k]);
+	for (k = 0; k < j; k++)
+		printf("%c", s2[k]);
+	printf("\r\n");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+u8 ____update_readlocation_len____2(u32 loop)
 {
 	u32 i, j, k, o,u,p;
 	u8* s1, *s2;
@@ -238,25 +303,23 @@ u8 ____update_readlocation_len____(u32 loop)
 
 
 
-		u = rand() % (strlen(str) + 1);
-		while (u--)
-		{
-			p = rand() % (strlen(str) + 1);
-			get_unread_ptr(&ring, &s1, &s2, &i, &j, YES);
-			update_readlocation_len(&ring, p);
-			check = YES;
-			for (k = 0; k < ((i <= p) ? i : p); k++) {
-				if (str[k] != s1[k])
-					check = NO;
-			}
-			for (k = 0; k < ((i <= p) ? j : 0); k++) {
-				if (str[i + k] != s2[k])
-					check = NO;
-			}
-			if (check == NO)
-				m++;
-			n++;
+
+		p = rand() % (strlen(str) + 1);
+		get_unread_ptr(&ring, &s1, &s2, &i, &j, YES);
+		update_readlocation_len(&ring, p);
+		check = YES;
+		for (k = 0; k < ((i <= p) ? i : p); k++) {
+			if (str[k] != s1[k])
+				check = NO;
 		}
+		for (k = 0; k < ((i <= p) ? j : 0); k++) {
+			if (str[i + k] != s2[k])
+				check = NO;
+		}
+		if (check == NO)
+			m++;
+		n++;
+		
 
 
 	}

@@ -6,7 +6,7 @@ int main(void)
 	u32 crc;
 
 
-	s = ____update_readlocation_len____(1000000);
+	s = ____update_readlocation_len____(10000);
 	if (s == YES)
 		printf("____update_readlocation_len____:					YES\r\n");
 	else
@@ -14,7 +14,7 @@ int main(void)
 
 
 
-	s = ____packing_unpackeg___(1024);
+	s = ____packing_unpackeg___(128);
 	if (s == YES)
 		printf("____packing_unpackeg___:					YES\r\n");
 	else
@@ -22,7 +22,7 @@ int main(void)
 
 
 
-	s = ____trans_8to7b_7to8b____(1024*100);
+	s = ____trans_8to7b_7to8b____(1024*10);
 	if (s == YES)
 		printf("____trans_8to7b_7to8b____:					YES\r\n");
 	else
@@ -40,9 +40,9 @@ int main(void)
 
 	s = ______write_buffer_len____get_unread_data_____(1000000);
 	if (s == YES)
-		printf("______write_buffer_data____get_unread_ptr_____:					YES\r\n");
+		printf("______write_buffer_len____get_unread_data_____:					YES\r\n");
 	else
-		printf("______write_buffer_data____get_unread_ptr_____:					NO\r\n");
+		printf("______write_buffer_len____get_unread_data_____:					NO\r\n");
 
 
 	s = ______write_buffer_len____get_unread_ptr_____(1000000);

@@ -227,10 +227,10 @@ u8 ____packing_unpackeg___(u32 loop)
 	{
 		loop = lop3;
 		rrr = (rand() % 1024*10) + 3108 ;
-		initial_buffer(&ring, YES, 2072);
+		initial_buffer(&ring, YES, 1024*50);
 		while (loop--)
 		{
-			for (j = 0; j < 3; j++)
+			for (j = 0; j < 5; j++)
 			{
 				for (i = 0; i < 896; i++)
 				{
@@ -239,11 +239,18 @@ u8 ____packing_unpackeg___(u32 loop)
 				dst = packing(src, 896);
 				write_buffer_data(&ring, dst, 1024 + 12);
 			}
-			if (loop == 0x3d5)
-				i = 0;
 
-			get_unread_ptr(&ring, &l1, &l2, &e1, &e2, NO);
-			stop = unpacking(l1, l2, e1, e2);
+			j = rand() % 256;
+			for (i = 0; i < j; i++)
+			{
+				dst[i] = rand() % 256;
+			}
+			write_buffer_data(&ring, dst, j);
+
+			get_unread_ptr(&ring, &l1, &l2, &e1, &e2, YES);												//以预览模式监视缓存数据
+			stop = unpacking(l1, l2, e1, e2);															//对监视的数据进行数据包识别
+			if (stop != NULL_PTR)																		
+				update_readlocation_len(&ring, (stop > (l1 + e1)) ? (e1 + stop - l2) : (stop - l1));	//如果在监视的数据中检查到了数据包并被保存后，则干预被监视的数据
 			recv = recv_data_list.end;
 			for (i = 0; i < 896; i++)
 			{

@@ -72,9 +72,12 @@ void write_buffer_len(ringbuffer *ptr,u32 datalen)
 				idle_space = ptr->ringbuffer_size;
 		}
 
-		write_len = datalen - (ptr->end_ringbuffer_ptr - ptr->write_location_ptr);
+		if (ptr->write_location_ptr == ptr->start_ringbuffer_ptr && idle_space == datalen)
+			write_len = datalen;
+		else
+			write_len = datalen - (ptr->end_ringbuffer_ptr - ptr->write_location_ptr);
 		ptr->write_location_ptr = ptr->start_ringbuffer_ptr;
-		if (datalen > idle_space)
+		if (datalen >= idle_space)
 		{
 			ptr->leading_flag = YES;
 			if (write_len == ptr->ringbuffer_size)
@@ -149,7 +152,7 @@ void write_buffer_data(ringbuffer *ptr, u8* data, u32 datalen)
 
 
 		//if (write_len + ptr->start_ringbuffer_ptr >= ptr->read_location_ptr)
-		if(datalen > idle_space)
+		if(datalen >= idle_space)
 		{
 			ptr->leading_flag = YES;
 			if (write_len == ptr->ringbuffer_size)
