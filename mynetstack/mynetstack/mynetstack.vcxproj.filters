@@ -83,5 +83,8 @@
     <ClCompile Include="Source\Factory\src\basic_list.c">
       <Filter>Factory</Filter>
     </ClCompile>
+    <ClCompile Include="Source\test_code\unit_test.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

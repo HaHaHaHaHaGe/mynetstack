@@ -41,6 +41,7 @@
     <ClCompile Include="Source\test_code\packeg_taken_test.c" />
     <ClCompile Include="Source\test_code\ringbuffer_test.c" />
     <ClCompile Include="Source\test_code\test_main.c" />
+    <ClCompile Include="Source\test_code\unit_test.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

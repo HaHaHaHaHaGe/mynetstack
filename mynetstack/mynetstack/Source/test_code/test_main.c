@@ -5,6 +5,13 @@ int main(void)
 	u8 s;
 	u32 crc;
 
+	s = ______UNIT_read_write_data______("d:/test.xlsx");
+	if (s == YES)
+		printf("______UNIT_read_write_data______:					YES\r\n");
+	else
+		printf("______UNIT_read_write_data______:					NO\r\n");
+
+
 
 	s = ____update_readlocation_len____(10000);
 	if (s == YES)
