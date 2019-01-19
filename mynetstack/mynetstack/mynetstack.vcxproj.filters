@@ -19,6 +19,9 @@
     <Filter Include="Factory">
       <UniqueIdentifier>{e7668934-e952-456d-826d-3e8e2bf3bc8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Transport">
+      <UniqueIdentifier>{35e68156-e56f-4e89-b7b7-b4781aa02e12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\BasicDataStream\inc\ringbuffer.h">
@@ -50,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="Source\Factory\inc\basic_list.h">
       <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Transport\inc\classifier.h">
+      <Filter>Transport</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +91,9 @@
     </ClCompile>
     <ClCompile Include="Source\test_code\unit_test.c">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transport\src\classifier.c">
+      <Filter>Transport</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

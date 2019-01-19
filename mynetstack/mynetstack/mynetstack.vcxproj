@@ -29,6 +29,7 @@
     <ClInclude Include="Source\Factory\inc\basic_function.h" />
     <ClInclude Include="Source\Factory\inc\basic_list.h" />
     <ClInclude Include="Source\test_code\test_main.h" />
+    <ClInclude Include="Source\Transport\inc\classifier.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\BasicDataStream\src\packeg_taken.c" />
@@ -42,6 +43,7 @@
     <ClCompile Include="Source\test_code\ringbuffer_test.c" />
     <ClCompile Include="Source\test_code\test_main.c" />
     <ClCompile Include="Source\test_code\unit_test.c" />
+    <ClCompile Include="Source\Transport\src\classifier.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

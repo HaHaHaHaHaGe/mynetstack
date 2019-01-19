@@ -1,6 +1,2 @@
-﻿  test_main.c
-e:\mynetstack\mynetstack\mynetstack\source\test_code\test_main.c(8): warning C4013: “______UNIT_read_write_data______”未定义；假设外部返回 int
-  unit_test.c
-e:\mynetstack\mynetstack\mynetstack\source\test_code\unit_test.c(58): warning C4018: “<”: 有符号/无符号不匹配
-  正在生成代码...
+﻿  classifier.c
   mynetstack.vcxproj -> E:\mynetstack\mynetstack\Debug\mynetstack.exe
