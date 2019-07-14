@@ -1,34 +1,54 @@
 ﻿  packeg_taken.c
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(213): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(214): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(218): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(220): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(347): warning C4047: “return”:“u8 *”与“int”的间接级别不同
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(355): warning C4244: “-=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(362): warning C4244: “-=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(236): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(237): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(241): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(243): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(386): warning C4244: “-=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\packeg_taken.c(398): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
   ringbuffer.c
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(62): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(100): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(106): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(113): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(145): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(146): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(155): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(156): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(157): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(173): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(187): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(189): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(68): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(70): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(78): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(118): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(124): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(136): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(138): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(144): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(177): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(178): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(187): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(188): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(189): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(205): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(219): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(221): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(249): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\ringbuffer.c(251): warning C4244: “=”: 从“__int64”转换到“u32”，可能丢失数据
   sdata_trans.c
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\basicdatastream\src\sdata_trans.c(134): warning C4101: “ss1”: 未引用的局部变量
   basic_crc32.c
   basic_function.c
+  basic_list.c
   basic_crc32_test.c
   packeg_taken_test.c
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\packeg_taken_test.c(253): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
   ringbuffer_test.c
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(14): warning C4267: “函数”: 从“size_t”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(77): warning C4267: “函数”: 从“size_t”转换到“u32”，可能丢失数据
-c:\users\administrator\desktop\github_code\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(154): warning C4267: “函数”: 从“size_t”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(14): warning C4267: “函数”: 从“size_t”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(77): warning C4267: “函数”: 从“size_t”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(154): warning C4267: “函数”: 从“size_t”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(220): warning C4101: “p”: 未引用的局部变量
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(220): warning C4101: “u”: 未引用的局部变量
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(220): warning C4101: “o”: 未引用的局部变量
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(285): warning C4267: “函数”: 从“size_t”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(279): warning C4101: “u”: 未引用的局部变量
   test_main.c
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\test_main.c(8): warning C4013: “______UNIT_read_write_data______”未定义；假设外部返回 int
+  unit_test.c
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\unit_test.c(39): warning C4244: “函数”: 从“__int64”转换到“u32”，可能丢失数据
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\unit_test.c(58): warning C4018: “<”: 有符号/无符号不匹配
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\unit_test.c(26): warning C4267: “初始化”: 从“size_t”转换到“u32”，可能丢失数据
+  classifier.c
+f:\github\mynetstack\mynetstack\mynetstack\source\transport\inc\classifier.h(75): warning C4091: “typedef ”: 没有声明变量时忽略“packeg_data”的左侧
+f:\github\mynetstack\mynetstack\mynetstack\source\transport\inc\classifier.h(87): warning C4091: “typedef ”: 没有声明变量时忽略“packeg_command”的左侧
   正在生成代码...
-  mynetstack.vcxproj -> C:\Users\Administrator\Desktop\github_code\mynetstack\mynetstack\x64\Debug\mynetstack.exe
+f:\github\mynetstack\mynetstack\mynetstack\source\test_code\ringbuffer_test.c(259): warning C4716: “____update_readlocation_len____”: 必须返回一个值
+  mynetstack.vcxproj -> F:\Github\mynetstack\mynetstack\x64\Debug\mynetstack.exe

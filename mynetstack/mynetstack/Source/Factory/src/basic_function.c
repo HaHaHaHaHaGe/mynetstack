@@ -27,3 +27,8 @@ u32 basic_swap(u32 x)
 		((x << 8) & 0x00FF0000) |
 		(x << 24);
 }
+
+u32 basic_time()
+{
+	return 0;
+}
