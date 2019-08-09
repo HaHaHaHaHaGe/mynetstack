@@ -95,5 +95,8 @@
     <ClCompile Include="Source\Transport\src\classifier.c">
       <Filter>Transport</Filter>
     </ClCompile>
+    <ClCompile Include="Source\test_code\classifier_test.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

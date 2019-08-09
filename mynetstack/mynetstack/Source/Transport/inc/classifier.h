@@ -122,9 +122,24 @@ typedef struct packeg_command
 
 
 
+/*
+检测packeg_base大小，方便为序列化分配内存
+参数：
+packeg_base:目标
+返回值：字节
+*/
+int get_basepackeg_len(packeg_base* pb);
 
-//全局累加变量
-u32 Cumulative = 0;
+
+
+
+/*
+将packeg_base序列化成二进制数据，方便传输
+参数：
+packeg_base:准备序列化的数据
+data:保存位置
+*/
+void copy_basepackeg_to_memory(packeg_base* pb, u8 *data);
 
 
 

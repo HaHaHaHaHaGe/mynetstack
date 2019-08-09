@@ -37,6 +37,9 @@
 //
 //2019-1-18
 //增加单元测试文件uint_test，用于各种单元结构测试
+//
+//2019-7-25
+//增加数据包分类器测试文件classifier_test，测试原始数据分类
 //////////////////////////////////////////////////////////////////
 
 
@@ -51,6 +54,7 @@
 #include "../Factory/inc/basic_function.h"
 #include "../BasicDataStream/inc/packeg_taken.h"
 #include "../BasicDataStream/inc/sdata_trans.h"
+#include "../Transport/inc/classifier.h"
 /*
 入口参数:
 loop: 测试次数
@@ -123,4 +127,9 @@ loop: 测试次数
 返回值：成功/失败
 */
 u8 ____update_readlocation_len____(u32 loop);
+
+
+
+
+u8 ______classifier____separa__mix_____(void);
 #endif

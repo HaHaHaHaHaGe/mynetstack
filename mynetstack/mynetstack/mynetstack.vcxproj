@@ -39,6 +39,7 @@
     <ClCompile Include="Source\Factory\src\basic_function.c" />
     <ClCompile Include="Source\Factory\src\basic_list.c" />
     <ClCompile Include="Source\test_code\basic_crc32_test.c" />
+    <ClCompile Include="Source\test_code\classifier_test.c" />
     <ClCompile Include="Source\test_code\packeg_taken_test.c" />
     <ClCompile Include="Source\test_code\ringbuffer_test.c" />
     <ClCompile Include="Source\test_code\test_main.c" />

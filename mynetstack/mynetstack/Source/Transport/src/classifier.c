@@ -1,5 +1,21 @@
 #include "../inc/classifier.h"
 
+//全局累加变量
+u32 Cumulative = 0;
+
+int get_basepackeg_len(packeg_base * pb)
+{
+	if(pb->ptype == COMMAND_PACKEG)
+		return sizeof(packeg_command) + sizeof(packeg_base) - sizeof(u8*);
+	if (pb->ptype == DATA_PACKEG)
+		return sizeof(packeg_data) + sizeof(packeg_base) - sizeof(u8*) + ((packeg_data*)pb->data)->datalen;
+	return 0;
+}
+
+void copy_basepackeg_to_memory(packeg_base * pb, u8 * data)
+{
+}
+
 void separa_packeg_base(packeg_base* pb,u8 * data)
 {
 	basic_memcpy(pb, data, sizeof(packeg_base));
